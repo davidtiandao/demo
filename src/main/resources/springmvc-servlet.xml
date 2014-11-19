@@ -17,12 +17,12 @@
 	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd ">
 	
 	<!-- 1. 包扫描 controller -->
-	<context:component-scan base-package="cn.itcast.jk.controller"/>
+	<context:component-scan base-package="com.tdedu.bu.controller"/>
 	
 	<!-- 2. 内部资源视图解析器 -->
 	<bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/pages"/>
-		<property name="suffix" value=""/>
+		<property name="suffix" value=".jsp"/>
 	</bean>
 	
 </beans>

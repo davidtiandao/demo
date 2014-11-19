@@ -19,5 +19,8 @@ public class UserInformationService {
 	public void updateStatus(Map map){
 		userInformationDao.updateState(map);
 	}
+	public UserInformation findById(String userId){
+		return userInformationDao.get(userId);
+	}
 
 }
