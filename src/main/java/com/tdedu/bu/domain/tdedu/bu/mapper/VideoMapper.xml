@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tdedu.bu.dao.VideoDao">
+	<resultMap type="com.tdedu.bu.domain.Video" id="videoRM">
+		<id property="id" column="ID"/>
+		<result property="sectionId" column="SECTION_ID"/>
+		<result property="videoName" column="VIDEO_NAME"/>
+		<result property="videoLx" column="VIDEO_LX"/>
+		<result property="videoTypeId" column="VIDEO_TYPEID"/>
+		<result property="videoFileTypeId" column="VIDEO_FILE_ID"/>
+			
+	</resultMap>
+	<!-- 按id查询 -->
+	<select id="get" resultMap="videoRM">
+		select * from td_video where ID=#{id}
+	</select>
+	<!-- 按sectionid查询 -->
+	<select id="findBySection" resultMap="videoRM">
+		select * from td_video where SECTION_ID=#{sectionId}
+	</select>
+	<!-- 插入 -->
+	<insert id="insert" parameterType="com.tdedu.bu.domain.Video">
+		insert into td_video
+		(ID,SECTION_ID,VIDEO_NAME,VIDEO_LX,VIDEO_TYPEID,VIDEO_FILE_ID) values
+		( #{id},
+		  #{sectionId},	
+		  #{videoName},
+		  #{videoLx},
+		  #{videoTypeId},
+		  #{videoFileTypeId}
+		)
+	</insert>
+	<!-- 更新 -->
+	<update id="update" parameterType="com.tdedu.bu.domain.Video">
+		update td_video
+		<set>
+			<if test="sectionId != null">SECTION_ID=#{sectionId},</if>
+			<if test="videoName != null">VIDEO_NAME=#{videoName},</if>
+			<if test="videoLx != null">VIDEO_LX=#{videoLx},</if>
+			<if test="videoTypeId != null">VIDEO_TYPEID=#{videoTypeId},</if>
+			<if test="videoFileTypeId != null">VIDEO_FILE_ID=#{videoFileTypeId},</if>
+		</set>
+		where ID =#{id}
+	</update>
+	<!-- 删除 -->
+	<delete id="deleteById" parameterType="string">
+		delete from td_video where ID=#{id};
+	</delete>
+</mapper>

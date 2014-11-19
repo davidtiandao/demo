@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tdedu.bu.dao.UserInformationDao">
+	<!-- resultMap映射 -->
+	<resultMap type="com.tdedu.bu.domain.UserInformation" id="userRM">
+		<!-- 主键 -->
+		<id property="id" column="ID"/>
+		<!-- 一般属性 -->
+		<result property="fullName" column="FULL_NAME"/>
+		<result property="gender" column="GENDER"/>
+		<result property="birthday" column="BIRTHDAY"/>
+		<result property="hometown" column="HOMETOWN"/>
+		<result property="livePlace" column="LIVE_PLACE"/>
+		<result property="phone" column="PHONE"/>
+		<result property="telphone" column="TELPHONE"/>
+		<result property="email" column="EMAIL"/>
+		<result property="qq" column="QQ"/>
+		<result property="weixin" column="WEIXIN"/>
+		<result property="otherContent" column=" OTHER_CONTENT"/>
+		<result property="cardType" column="CARD_TYPE"/>
+		<result property="cardNo" column="CARD_NO"/>
+		<result property="nationality" column="NATIONALITY"/>
+		<result property="politicalAddiliation" column="POLITICAL_ADDILIATION"/>
+		<result property="photo" column="PHOTO"/>
+		<result property="userStatus" column="USER_STATUS"/>
+		
+		<result property="description" column="DESCRIPTION"/>
+		
+	</resultMap>
+	
+	<!-- 查询 -->
+	<select id="find" resultMap="userRM">
+		select * from td_userinformation
+		where 1=1
+		<if test="state!=null"> and USER_STATUS=#{userStatus}</if>
+	</select>
+	
+	<!-- 查询一个 -->
+	<select id="get" resultMap="userRM">
+		select * from td_userinformation
+		where ID=#{uid}
+	</select>
+	
+	<!-- 新增  oracle jdbc驱动 当这个值为null时，必须告诉它当前字段默认值的类型jdbcType=VARCHAR （mybatis定义）,
+			无效的列类型: 1111; nested exception is java.sql.SQLException
+	 		mysql不用写  -->
+	<insert id="insert" parameterType="com.tdedu.bu.domain.UserInformation">
+		insert into td_userinformation
+		(ID,FULL_NAME,GENDER,BIRTHDAY,HOMETOWN,LIVE_PLACE,PHONE,TELPHONE,EMAIL,QQ,WEIXIN,OTHER_CONTENT,CARD_TYPE,CARD_NO,NATIONALITY,POLITICAL_ADDILIATION,PHOTO,USER_STATUS,DESCRIPTION)
+		values
+			
+		(	#{id},
+			#{fullName},
+			#{gender},
+			#{birthday},
+			#{hometown},
+			#{livePlace},
+			#{phone},
+			#{telphone},
+			#{email},
+			#{qq},
+			#{weixin},
+			#{otherContent},
+			#{cardType},
+			#{cardNo},			
+			#{nationality},
+			#{politicalAddiliation},
+			#{photo},
+			#{userStatus},
+			#{description}
+		)
+	</insert>
+	
+	<!-- 修改 动态SQL语句 -->
+	<update id="update" parameterType="com.tdedu.bu.domain.UserInformation">
+		update td_userinformation
+		<set>
+			<if test="fullName != null">FULL_NAME=#{fullName},</if>
+			<if test="gender != null">GENDER=#{gender},</if>
+			<if test="birthday != null">BIRTHDAY=#{birthday},</if>
+			<if test="hometown != null">HOMETOWN=#{hometown},</if>
+			<if test="livePlace != null">LIVE_PLACE=#{livePlace},</if>
+			<if test="phone != null">PHONE=#{phone},</if>
+			<if test="telphone != null">TELPHONE=#{telphone},</if>
+			<if test="email != null">EMAIL=#{email},</if>
+			<if test="qq != null">QQ=#{qq},</if>
+			<if test="weixin != null">WEIXIN=#{weixin},</if>
+			<if test="otherContent != null">OTHER_CONTENT=#{otherContent},</if>
+			<if test="cardType != null">CARD_TYPE=#{cardType},</if>
+			<if test="cardNo != null">CARD_NO=#{cardNo},</if>
+			<if test="nationality != null">NATIONALITY=#{nationality},</if>
+			<if test="politicalAddiliation != null">POLITICAL_ADDILIATION=#{politicalAddiliation},</if>
+			<if test="photo != null">PHOTO=#{photo},</if>
+			<if test="description != null">DESCRIPTION=#{description},</if>
+		</set>
+		where ID=#{id}
+	</update>
+	
+	<!-- 删除一条 -->
+	<delete id="deleteById" parameterType="string" >
+		delete from td_userinformation
+		where ID=#{uid}
+	</delete>
+	
+	<!-- 删除多条（一维字符串数组） -->
+	<delete id="delete" >
+		delete from td_userinformation
+		where ID in
+		<foreach collection="array" item="id" open="(" close=")" separator=",">
+			#{id}
+		</foreach>
+	</delete>
+	
+	<!-- 修改状态 -->
+	<update id="updateState" >
+		update td_userinformation set USER_STATUS=#{userStatus}
+		where ID in
+		<foreach collection="ids" item="id" open="(" close=")" separator=",">
+			#{id}
+		</foreach>
+	</update>
+
+</mapper>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tdedu.bu.dao.SectionDao">
+	<resultMap type="com.tdedu.bu.domain.Section" id="sectionRM">
+		<id property="id" column="ID"/>
+		<result property="sectionName" column="SECTION_NAME"/>
+		<result property="sectionVersion" column="SECTION_VERSION"/>
+		<result property="sectionCreateDate" column="SECTION_CREATE_DATE"/>
+		<result property="sectionUpdateDate" column="SECTION_UPDATE_DATE"/>
+		<result property="sectionTypeId" column="SECTION_TYPE_ID"/>
+		<result property="sectionStatus" column="SECTION_STATUS"/>
+		<result property="teacherId" column="TEACHER_ID"/>
+	</resultMap>
+	<select id="get" resultMap="sectionRM">
+		select * from td_section where ID=#{id}
+	</select>
+		<select id="find" resultMap="sectionRM">
+		select * from td_section where SECTION_STATUS=#{sectionStatus}
+	</select>
+	
+	<insert id="insert" parameterType="com.tdedu.bu.domain.Section">
+		insert into td_section
+		(ID,SECTION_NAME,SECTION_VERSION,SECTION_CREATE_DATE,
+			SECTION_UPDATE_DATE,SECTION_TYPE_ID,SECTION_STATUS,TEACHER_ID) values
+		( #{id},
+		  #{sectionName},	
+		  #{sectionVersion},
+		  #{sectionCreateDate},
+		  #{sectionUpdateDate},
+		  #{sectionTypeId},
+		  #{sectionStatus},
+		  #{teacherId}	
+		)
+	</insert>
+	<update id="update" parameterType="com.tdedu.bu.domain.Section">
+		update td_section
+		<set>
+			<if test="sectionName != null">SECTION_NAME=#{sectionName},</if>
+			<if test="sectionVersion != null">SECTION_VERSION=#{sectionVersion},</if>
+			<if test="sectionCreateDate != null">SECTION_CREATE_DATE=#{sectionCreateDate},</if>
+			<if test="sectionUpdateDate != null">SECTION_UPDATE_DATE=#{sectionUpdateDate},</if>
+			<if test="sectionTypeId != null">SECTION_TYPE_ID=#{sectionTypeId},</if>
+			<if test="sectionStatus != null">SECTION_STATUS=#{sectionStatus},</if>
+			<if test="teacherId != null">TEACHER_ID=#{teacherId},</if>
+		</set>
+		where ID =#{id}
+	</update>
+	<delete id="deleteById" parameterType="string">
+	delete from td_section where ID=#{id}
+	</delete>
+</mapper>

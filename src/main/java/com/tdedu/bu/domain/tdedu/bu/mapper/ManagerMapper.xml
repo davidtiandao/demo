@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tdedu.bu.dao.ManagerDao">
+	<resultMap type="com.tdedu.bu.domain.Manager" id="managerRM">
+		<id property="managerId" column="MANAGER_ID"/>
+		<result property="managerRole" column="MANAGER_ROLE"/>
+		<result property="managerStatus" column="MANAGER_STATUS"/>
+	</resultMap>
+	<!-- 按id查询 -->
+	<select id="get" resultMap="managerRM" parameterType="string">
+		select * from td_manager where MANAGER_ID=#{managerId}
+	</select>
+	<!-- 按状态查询 -->
+	<select id="find" resultMap="managerRM" parameterType="int">
+		select * from td_manager 
+		where 1=1
+		and MANAGER_STATUS=#{managerStatus}
+	</select>
+	<!-- 插入 -->
+	<insert id="insert" parameterType="com.tdedu.bu.domain.Manager">
+		insert into td_manager
+		(MANAGER_ID,MANAGER_ROLE,MANAGER_STATUS) values
+		( #{managerId},
+		  #{managerRole},	
+		  #{managerStatus}
+		)
+	</insert>
+	<!-- 更新 -->
+	<update id="update" parameterType="com.tdedu.bu.domain.Manager">
+		update td_manager
+		<set>
+			<if test="managerRole != null">MANAGER_ROLE=#{managerRole},</if>
+			<if test="managerStatus != null">MANAGER_STATUS=#{managerStatus},</if>
+		</set>
+		where MANAGER_ID =#{managerId}
+	</update>
+	<!-- 删除 -->
+	<delete id="deleteById" parameterType="string">
+		delete from td_manager where MANAGER_ID=#{managerId};
+	</delete>
+</mapper>

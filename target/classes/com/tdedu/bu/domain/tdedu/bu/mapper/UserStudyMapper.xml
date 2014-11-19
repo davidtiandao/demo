@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tdedu.bu.dao.UserStudyDao">
+	<resultMap type="com.tdedu.bu.domain.UserStudy" id="studyRM">
+		<id property="id" column="ID"/>
+		<result property="userId" column="USER_ID"/>
+		<result property="sectionId" column="SECTION_ID"/>
+		<result property="sectionTime" column="SECTION_TIME"/>
+		<result property="courseId" column="COURSE_ID"/>
+	</resultMap>
+	<!-- 按id查询 -->
+	<select id="get" resultMap="studyRM">
+		select * from td_userstudy where ID=#{id}
+	</select>
+	<!-- 插入 -->
+	<insert id="insert" parameterType="com.tdedu.bu.domain.UserStudy">
+		insert into td_userstudy
+		(ID,USERID,SECTION_ID,SECTION_TIME,COURSE_ID) values
+		( #{id},
+		  #{userId},	
+		  #{sectionId},
+		  #{sectionTime},
+		  #{courseId}
+		)
+	</insert>
+	<!-- 更新 -->
+	<update id="update" parameterType="com.tdedu.bu.domain.UserStudy">
+		update td_userstudy
+		<set>
+			<if test="userId != null">USERID=#{userId},</if>
+			<if test="sectionId != null">SECTION_ID=#{sectionId},</if>
+			<if test="sectionTime != null">SECTION_TIME=#{sectionTime},</if>
+			<if test="courseId != null">COURSE_ID=#{courseId},</if>
+		</set>
+		where ID =#{id}
+	</update>
+	<!-- 删除 -->
+	<delete id="deleteById" parameterType="string">
+		delete from td_userstudy　WHERE ID=#{id}
+	</delete>
+</mapper>

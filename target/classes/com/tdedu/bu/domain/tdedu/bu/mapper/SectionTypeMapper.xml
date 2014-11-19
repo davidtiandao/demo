@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tdedu.bu.dao.SectionTypeDao">
+	<resultMap type="com.tdedu.bu.domain.SectionType" id="sectionTypeRM">
+		<id property="id" column="ID"/>
+		<result property="sectionIntroduction" column="SECTION_INTRODUCTION"/>
+		<result property="sectionTypeId" column="SECTION_TYPE_ID"/>
+	</resultMap>
+	<!-- 按id查询 -->
+	<select id="get" resultMap="sectionTypeRM">
+		select * from td_sectiontype where ID=#{id}
+	</select>
+	<!-- 插入 -->
+	<insert id="insert" parameterType="com.tdedu.bu.domain.SectionType">
+		insert into td_sectiontype
+		(ID,SECTION_INTRODUCTION,SECTION_TYPE_ID) values
+		( #{id},
+		  #{sectionIntroduction},	
+		  #{sectionTypeId}
+		)
+	</insert>
+	<!-- 更新 -->
+	<update id="update" parameterType="com.tdedu.bu.domain.SectionType">
+		update td_sectiontype
+		<set>
+			<if test="sectionIntroduction != null">MANAGER_ROLE=#{sectionIntroduction},</if>
+			<if test="sectionTypeId != null">MANAGER_STATUS=#{sectionTypeId}</if>
+		</set>
+		where ID =#{id}
+	</update>
+	<!-- 删除 -->
+	<delete id="deleteById" parameterType="string">
+		delete from td_sectiontype where ID=#{id};
+	</delete>
+</mapper>

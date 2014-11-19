@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tdedu.bu.dao.CategoryDao">
+	<resultMap type="com.tdedu.bu.domain.Category" id="categoryRM">
+		<id property="id" column="ID"/>
+		<result property="categoryName" column="CATEGORY_NAME"/>
+		<result property="categoryIntroduction" column="CATEGORY_INTRODUCTION"/>
+		<result property="categoryHierarchy" column="CATEGORY_HIERARCHY"/>
+		<result property="categoryOrderNo" column="CATEGORY_ORDER_NO"/>
+		<result property="categoryParentId" column="CATEGORY_PARENT_ID"/>
+		<result property="categoryStatus" column="CATEGORY_STATUS"/>
+			
+	</resultMap>
+	<!-- 按id查询 -->
+	<select id="get" resultMap="categoryRM" parameterType="string" >
+		select * from td_category where ID=#{id}
+	</select>
+	<!-- 按状态查询 -->
+	<select id="find" resultMap="categoryRM" parameterType="int" >
+		select * from td_category
+		where 1=1
+		and CATEGORY_STATUS=#{categoryStatus}
+	</select>
+	<!-- 插入 -->
+	<insert id="insert" parameterType="com.tdedu.bu.domain.Category">
+		insert into td_category
+		(ID,CATEGORY_NAME,CATEGORY_INTRODUCTION,CATEGORY_HIERARCHY,CATEGORY_ORDER_NO,CATEGORY_PARENT_ID,CATEGORY_STATUS) values
+		( #{id},
+		  #{categoryName},	
+		  #{categoryIntroduction},
+		  #{categoryHierarchy},
+		  #{categoryOrderNo},
+		  #{categoryParentId},
+		  #{categoryStatus}
+		)
+	</insert>
+	<!-- 更新 -->
+	<update id="update" parameterType="com.tdedu.bu.domain.Category">
+		update td_category
+		<set>
+			<if test="categoryName != null">CATEGORY_NAME=#{categoryName},</if>
+			<if test="categoryIntroduction != null">CATEGORY_INTRODUCTION=#{categoryIntroduction},</if>
+			<if test="categoryHierarchy != null">CATEGORY_HIERARCHY=#{categoryHierarchy},</if>
+			<if test="categoryOrderNo != 0">CATEGORY_ORDER_NO=#{categoryOrderNo},</if>
+			<if test="categoryParentId != null">CATEGORY_PARENT_ID=#{categoryParentId},</if>
+			<if test="categoryStatus != 0">CATEGORY_STATUS=#{categoryStatus},</if>
+		</set>
+		where ID=#{id}
+	</update>
+	<!-- 删除 -->
+	<delete id="deleteById" parameterType="string">
+		delete from td_category where ID=#{id};
+	</delete>
+</mapper>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tdedu.bu.dao.ShootingDao">
+	<resultMap type="com.tdedu.bu.domain.Shooting" id="shootingRM">
+		<id property="id" column="ID"/>
+		<result property="shootingCourseId" column="SHOOTING_COURSEID"/>
+		<result property="teacherId" column="TEACHER_ID"/>
+		<result property="onlineDate" column="ONLINE_DATE"/>
+		<result property="lookNumber" column="LOOK_NUMBER"/>
+		<result property="photoUrl" column="PHOTO_URL"/>
+		<result property="categoryId" column="CATEGORY_ID"/>
+	</resultMap>
+	<!-- 按id查询 -->
+	<select id="get" resultMap="shootingRM">
+		select * from td_shooting where ID=#{id}
+	</select>
+	<!-- 插入 -->
+	<insert id="insert" parameterType="com.tdedu.bu.domain.Shooting">
+		insert into td_shooting
+		(ID,SHOOTING_COURSEID,TEACHER_ID,ONLINE_DATE,LOOK_NUMBER,PHOTO_URL,CATEGORY_ID) values
+		( #{id},
+		  #{shootingCourseId},	
+		  #{teacherId},
+		  #{onlineDate}, 
+		  #{lookNumber},
+		  #{photoUrl},
+		  #{categoryId}
+		)
+	</insert>
+	<!-- 更新 -->
+	<update id="update" parameterType="com.tdedu.bu.domain.Shooting">
+		update td_shooting
+		<set>
+			<if test="shootingCourseId != null">SHOOTING_COURSEID=#{shootingCourseId},</if>
+			<if test="teacherId != null">TEACHER_ID=#{teacherId},</if>
+			<if test="onlineDate != null">ONLINE_DATE=#{onlineDate},</if>
+			<if test="lookNumber != null">LOOK_NUMBER=#{lookNumber},</if>
+			<if test="photoUrl != null">PHOTO_URL=#{photoUrl},</if>
+			<if test="categoryId != null">CATEGORY_ID=#{categoryId},</if>
+		</set>
+		where ID =#{id}
+	</update>
+	<!-- 删除 -->
+	<delete id="deleteById" parameterType="string">
+		delete from td_shooting where ID=#{id};
+	</delete>
+</mapper>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tdedu.bu.dao.VideoFileTypeDao">
+	<resultMap type="com.tdedu.bu.domain.VideoFileType" id="videoFileTypeRM">
+		<id property="id" column="ID"/>
+		<result property="videoFileType" column="VIDEO_FILE_TYPE"/>			
+	</resultMap>
+	<!-- 按id查询 -->
+	<select id="get" resultMap="videoFileTypeRM">
+		select * from td_video where ID=#{id}
+	</select>
+	<!-- 插入 -->
+	<insert id="insert" parameterType="com.tdedu.bu.domain.Video">
+		insert into td_videofiletype
+		(ID,VIDEO_FILE_TYPE) values
+		( #{id},
+		  #{videoFileType}
+		)
+	</insert>
+	<!-- 更新 -->
+	<update id="update" parameterType="com.tdedu.bu.domain.Video">
+		update td_videofiletype
+		<set>
+			<if test="videoFileType != null">VIDEO_FILE_TYPE=#{videoFileType}</if>
+		</set>
+		where ID =#{id}
+	</update>
+	<!-- 删除 -->
+	<delete id="deleteById" parameterType="string">
+		delete from td_videofiletype　where ID=#{id}
+	</delete>
+</mapper>

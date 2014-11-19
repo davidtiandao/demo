@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tdedu.bu.dao.StatusDao">
+	<resultMap type="com.tdedu.bu.domain.Status" id="staRM">
+		<id property="statusNo" column="STATUS_NO"/>
+		<result property="statusName" column="STATUS_NAME"/>
+	</resultMap>
+	<!-- 按状态码查询 -->
+	<select id="find" parameterType="int" resultMap="staRM">
+		select * from td_status
+		where 1=1 
+		and STATUS_NO=#{statusNo}
+	</select>
+	
+	<insert id="insert" parameterType="com.tdedu.bu.domain.Status">
+		insert into td_status
+		(STATUS_NO,STATUS_NAME) values
+		( #{statusNo},
+		  #{statusName}		
+		)
+	</insert>
+	<update id="update" parameterType="com.tdedu.bu.domain.Status">
+		update td_status 
+		<set>
+			<if test="statusName != null">STATUS_NAME=#{statusName}</if>
+		</set>
+		where STATUS_NO =#{statusNo}
+	</update>
+	<delete id="deleteByStatusNo" parameterType="int">
+		delete from td_status where STATUS_NO=#{statusNo};
+	</delete>
+</mapper>

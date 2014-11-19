@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tdedu.bu.dao.CourseLogDao">
+	<resultMap type="com.tdedu.bu.domain.CourseLog" id="courseLogRM">
+		<id property="id" column="ID"/>
+		<result property="courseId" column="COURSE_ID"/>
+		<result property="courseComment" column="COURSE_COMMENT"/>
+		<result property="courseUpdateDate" column="COURSE_UPDATE_DATE"/>
+	</resultMap>
+	<!-- 按id查询 -->
+	<select id="get" resultMap="courseLogRM" parameterType="string">
+		select * from course_log where ID={#id}
+	</select>
+	<!-- 插入 -->
+	<insert id="insert" parameterType="com.tdedu.bu.domain.CourseLog">
+		insert into course_log
+		(ID,COURSE_ID,COURSE_COMMENT,COURSE_UPDATE_DATE) values
+		( #{id},
+		  #{courseId},	
+		  #{courseComment},
+		  #{courseUpdateDate}
+		)
+	</insert>
+	<!-- 更新 -->
+	<update id="update" parameterType="com.tdedu.bu.domain.CourseLog">
+		update course_log
+		<set>
+			<if test="courseId != null">COURSE_ID=#{courseId},</if>
+			<if test="courseComment != null">COURSE_COMMENT=#{courseComment},</if>
+			<if test="courseUpdateDate != null">COURSE_UPDATE_DATE=#{courseUpdateDate},</if>
+		</set>
+		where ID =#{id}
+	</update>
+	<!-- 删除 -->
+	<delete id="deleteById" parameterType="string">
+		delete from course_log where ID=#{id};
+	</delete>
+	<!-- 批量删除 -->
+	<delete id="delete" >
+		delete from course_log
+		where ID in
+		<foreach collection="array" item="id" open="(" close=")" separator=",">
+			#{id}
+		</foreach>
+	</delete>
+</mapper>
