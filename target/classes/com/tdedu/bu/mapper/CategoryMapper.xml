@@ -13,15 +13,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="categoryStatus" column="CATEGORY_STATUS"/>
 			
 	</resultMap>
+	<!-- 查询父节点 -->
+	<select id="findCategoryParent" resultMap="categoryRM">
+		select * from td_category where CATEGORY_PARENT_ID is null;
+	</select>
 	<!-- 按id查询 -->
 	<select id="get" resultMap="categoryRM" parameterType="string" >
 		select * from td_category where ID=#{id}
 	</select>
+	<!-- 查询子节点最大的hierarchy -->
+	<select id="findByHierarchy" resultMap="int" parameterType="string">
+		SELECT MAX(CATEGORY_HIERARCHY) 
+		FROM td_category
+		 WHERE CATEGORY_PARENT_ID=#{id}	
+	</select>
 	<!-- 按状态查询 -->
-	<select id="find" resultMap="categoryRM" parameterType="int" >
-		select * from td_category
-		where 1=1
-		and CATEGORY_STATUS=#{categoryStatus}
+	<select id="listCategory" resultMap="categoryRM" parameterType="Map" >
+		select * from td_category 
+		where 1=1 
+		<if test="categoryName !=null">and CATEGORY_NAME like CONCAT('%',#{categoryName},'%') </if>
+		<if test="categoryStatus != 0">and CATEGORY_STATUS=#{categoryStatus}</if>
+		 ORDER	BY CATEGORY_HIERARCHY,CATEGORY_ORDER_NO LIMIT #{startPage},#{pageSize};
 	</select>
 	<!-- 插入 -->
 	<insert id="insert" parameterType="com.tdedu.bu.domain.Category">

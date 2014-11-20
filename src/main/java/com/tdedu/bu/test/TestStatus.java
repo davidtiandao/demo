@@ -13,7 +13,7 @@ public class TestStatus {
 	ApplicationContext applicationContext=new ClassPathXmlApplicationContext("applicationContext.xml");
 	StatusDao	statusDao=(StatusDao) applicationContext.getBean("statusDao");
 	@Test
-	public void insert(){
+	public void insert() throws Exception{
 		Status status=new Status();
 		status.setStatusNo(4);
 		status.setStatusName("帐号过期");

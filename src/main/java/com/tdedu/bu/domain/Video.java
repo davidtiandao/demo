@@ -2,7 +2,7 @@ package com.tdedu.bu.domain;
 
 public class Video {
 	/*
-	 * ¿É¼ûÊÓÆµ±í
+	 * è¯¾ä»¶è§†é¢‘è¡¨
 	 */
 	private String id;
 	private String sectionId;

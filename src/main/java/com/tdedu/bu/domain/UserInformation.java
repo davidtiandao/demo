@@ -1,7 +1,9 @@
 package com.tdedu.bu.domain;
 
 import java.util.Date;
-
+ /*
+  * 用户信息表 
+  */
 
 public class UserInformation {
 	private String id;

@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class UserAttention {
 	/*
-	 * ÎÒµÄ¹Ø×¢ÆÚ´ý±í
+	 * ç”¨æˆ·å…³æ³¨æœŸå¾…è¡¨
 	 */
 	private String id;
 	private String userId;

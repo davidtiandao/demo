@@ -14,7 +14,7 @@ public class TestChapter {
 	ApplicationContext applicationContext=new ClassPathXmlApplicationContext("applicationContext.xml");
 	ChapterDao chapterDao=(ChapterDao) applicationContext.getBean("chapterDao");	
 	@Test
-	public void insert(){
+	public void insert() throws Exception{
 		Chapter chapter=new Chapter();
 		chapter.setChapterTitle("雅思口语");
 		chapter.setId(UUID.randomUUID().toString());

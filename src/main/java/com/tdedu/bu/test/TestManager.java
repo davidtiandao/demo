@@ -12,7 +12,7 @@ public class TestManager {
 	ApplicationContext applicationContext=new ClassPathXmlApplicationContext("applicationContext.xml");
 	ManagerDao managerDao=(ManagerDao) applicationContext.getBean("managerDao");	
 	@Test
-	public void TestInsert(){
+	public void TestInsert() throws Exception{
 		Manager manager=new Manager();
 		manager.setManagerId("8f7361e5-87f1-496a-8f05-7fd67f6d28c5");
 		manager.setManagerRole("课程管理员");

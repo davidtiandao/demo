@@ -16,7 +16,7 @@ public class TestSection {
 	SectionDao sectionDao=(SectionDao) applicationContext.getBean("sectionDao");	
 	
 	@Test
-	public void testInsert(){
+	public void testInsert() throws Exception{
 		Section section=new Section();
 		section.setId(UUID.randomUUID().toString());
 		section.setSectionCreateDate(new Date());

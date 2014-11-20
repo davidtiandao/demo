@@ -14,8 +14,14 @@ public class PasswordService  {
 	public Password findByPwd(Password password){	
 		 return passwordDao.findByPwd(password);
 	}
+
 	public void save(Password password){
 		passwordDao.insert(password);
 	}
 	
+
+	public Password findByPwdAndId(Password password) {
+		return passwordDao.findByPwdAndId(password);
+	}	
+
 }

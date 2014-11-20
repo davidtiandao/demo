@@ -2,7 +2,7 @@ package com.tdedu.bu.domain;
 
 public class VideoFileType {
 	/*
-	 * 
+	 * 视频文件类型表
 	 */
 	private String id;
 	private String videoFileType;

@@ -2,7 +2,7 @@ package com.tdedu.bu.domain;
 
 public class UserStudy {
 	/*
-	 *ѧϰ���ȱ�
+	 *学习进度表
 	 */
 	private String id;
 	private String userId;

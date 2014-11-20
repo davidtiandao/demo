@@ -2,6 +2,7 @@ package com.tdedu.bu.domain;
 
 public class Status {
 	/*
+	 * 状态代码表
 	 */
 	private int statusNo;
 	private String statusName;

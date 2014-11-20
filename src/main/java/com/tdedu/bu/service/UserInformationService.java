@@ -14,9 +14,14 @@ import com.tdedu.bu.domain.UserInformation;
 public class UserInformationService {
 	@Autowired
 	private UserInformationDao userInformationDao;
+
 	@Autowired
 	private PasswordDao passwordDao;
-	public void save(UserInformation userInfromation){
+	
+
+
+	public void save(UserInformation userInfromation) throws Exception{
+
 		userInformationDao.insert(userInfromation);
 		
 	}

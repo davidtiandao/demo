@@ -2,7 +2,7 @@ package com.tdedu.bu.domain;
 
 public class UserComment {
 	/*
-	 * ÓÃ»§ÆÀÂÛ±í
+	 * ç”¨æˆ·è¯„è®ºè¡¨
 	 */
 	private String id;
 	private String userId;
