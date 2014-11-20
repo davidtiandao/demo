@@ -13,7 +13,7 @@ public class UserInformationService {
 	@Autowired
 	private UserInformationDao userInformationDao;
 
-	public void save(UserInformation userInfromation){
+	public void save(UserInformation userInfromation) throws Exception{
 		userInformationDao.insert(userInfromation);
 	}
 	public void updateStatus(Map map){

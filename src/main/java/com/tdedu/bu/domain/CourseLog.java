@@ -4,9 +4,7 @@ import java.util.Date;
 
 public class CourseLog {
 	/*
-	 * `COURSE_ID` varchar(40) NOT NULL COMMENT '¿Î³Ì±àºÅ',
-  `COURSE_COMMENT` varchar(200) NOT NULL COMMENT '±ä¸üÄÚÈÝ',
-  `COURSE_DATE` date NOT NULL COMMENT '±ä¸üÊ±¼ä ',
+	 *è¯¾ç¨‹æ—¥å¿—è¡¨
 	 */
 	private String id;
 	private String courseId;

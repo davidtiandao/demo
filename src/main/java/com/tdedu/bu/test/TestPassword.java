@@ -13,7 +13,7 @@ public class TestPassword {
 	ApplicationContext applicationContext=new ClassPathXmlApplicationContext("applicationContext.xml");
 	PasswordDao passwordDao=(PasswordDao) applicationContext.getBean("passwordDao");	
 	@Test
-	public void testInsert(){
+	public void testInsert() throws Exception{
 		Password password=new Password();
 		password.setUserId("127622ef-33b2-46df-b981-f57e4f92cd38");
 		password.setUserName("huangyong");

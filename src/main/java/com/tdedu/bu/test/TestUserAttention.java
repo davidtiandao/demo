@@ -15,7 +15,7 @@ public class TestUserAttention {
 	ApplicationContext apx=new ClassPathXmlApplicationContext("applicationContext.xml");
 	UserAttentionDao userAttentionDao=(UserAttentionDao) apx.getBean("userAttentionDao");
 	@Test
-	public void testInset(){
+	public void testInset() throws Exception{
 		UserAttention userAttention=new UserAttention();
 		userAttention.setId(UUID.randomUUID().toString());
 		userAttention.setCourseId("3f0fed46-1c79-4580-abe4-47e07f7fa28c");

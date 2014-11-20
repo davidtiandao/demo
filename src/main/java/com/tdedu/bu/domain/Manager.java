@@ -2,7 +2,7 @@ package com.tdedu.bu.domain;
 
 public class Manager {
 	/*
-	 * ƽ̨����Ա��
+	 * 学习平台管理员表
 	 */
 	private String managerId;
 	private int managerStatus;

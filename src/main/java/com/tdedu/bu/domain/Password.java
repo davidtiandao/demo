@@ -2,7 +2,7 @@ package com.tdedu.bu.domain;
 
 import java.util.Date;
 	/*
-	 * ƽ̨�˺ű�
+	 * 学习平台帐号密码表
 	 */
 public class Password {
 	private String userId;

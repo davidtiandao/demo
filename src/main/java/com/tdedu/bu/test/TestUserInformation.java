@@ -19,7 +19,7 @@ public class TestUserInformation {
 	UserInformationService	userInformationService=(UserInformationService) applicationContext.getBean("userService");
 	UserInformationDao ud=(UserInformationDao) applicationContext.getBean("userInformationDao");
 	@Test
-	public void testInsert(){
+	public void testInsert() throws Exception{
 		UserInformation newUser=new UserInformation();
 		newUser.setFullName("test2");
 		newUser.setGender("m");

@@ -14,7 +14,7 @@ public class TestShooting {
 	ApplicationContext applicationContext=new ClassPathXmlApplicationContext("applicationContext.xml");
 	ShootingDao shootingDao=(ShootingDao) applicationContext.getBean("shootingDao");
 	@Test
-	public void testInsert(){
+	public void testInsert() throws Exception{
 		Shooting shooting=new Shooting();
 		shooting.setId(UUID.randomUUID().toString());
 		shooting.setOnlineDate(new Date());

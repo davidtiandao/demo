@@ -14,7 +14,7 @@ public class testVideo {
 	VideoDao videoDao=(VideoDao) application.getBean("videoDao");
 	
 	@Test
-	public void testInsert(){
+	public void testInsert() throws Exception{
 		Video video=new Video();
 		video.setId(UUID.randomUUID().toString());
 		video.setSectionId("25b1f374-2ff0-42b9-ade9-1ffb50a0ad30");

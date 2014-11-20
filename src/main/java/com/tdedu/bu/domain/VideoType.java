@@ -2,7 +2,7 @@ package com.tdedu.bu.domain;
 
 public class VideoType {
 	/*
-	 * 视频类型表
+	 * 瑙嗛灞炴�ц〃
 	 */
 	private String id;
 	private int videoHigh;

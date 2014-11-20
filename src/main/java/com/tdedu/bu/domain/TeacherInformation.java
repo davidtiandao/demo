@@ -2,7 +2,7 @@ package com.tdedu.bu.domain;
 
 public class TeacherInformation {
 	/*
-	 * ½ÌÊ¦ÐÅÏ¢±í
+	 * æ•™å¸ˆè¡¨
 	 */
 	
 	private String teacherId;
