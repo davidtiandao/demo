@@ -7,11 +7,15 @@ import com.tdedu.bu.dao.PasswordDao;
 import com.tdedu.bu.domain.Password;
 
 @Component("passwordService")
-public class PasswordService {
+public class PasswordService  {
 	@Autowired
 	private PasswordDao passwordDao;
+	
 	public Password findByPwd(Password password){	
 		 return passwordDao.findByPwd(password);
+	}
+	public void save(Password password){
+		passwordDao.insert(password);
 	}
 	
 }
