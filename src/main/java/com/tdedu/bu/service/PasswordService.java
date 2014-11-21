@@ -15,7 +15,7 @@ public class PasswordService  {
 		 return passwordDao.findByPwd(password);
 	}
 
-	public void save(Password password){
+	public void save(Password password) throws Exception{
 		passwordDao.insert(password);
 	}
 	

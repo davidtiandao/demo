@@ -115,7 +115,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<!-- 修改状态 -->
-	<update id="updateState" >
+	<update id="updateState" parameterType="map">
 		update td_userinformation set USER_STATUS=#{userStatus}
 		where ID in
 		<foreach collection="ids" item="id" open="(" close=")" separator=",">

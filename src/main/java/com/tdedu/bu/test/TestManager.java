@@ -1,6 +1,9 @@
 package com.tdedu.bu.test;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -36,5 +39,18 @@ public class TestManager {
 	@Test
 	public void TestDelete(){
 		managerDao.deleteById("8f7361e5-87f1-496a-8f05-7fd67f6d28c5");
+	}
+	@Test
+	public void TestDeleteArray(){
+		String[] ids={"07e8b9f7-e21c-4d7a-ba70-8910bb54ffa2","0f25102d-dcc0-4a5c-b055-79fc8dfff7af"};
+		managerDao.delete(ids);
+	}	
+	@Test
+	public void TestSetManager(){
+		String[] ids={"07e8b9f7-e21c-4d7a-ba70-8910bb54ffa2","05e75212-0741-4fcc-8788-bdf56166eb40"};
+		Map<String,Object> mapManagerStatus=new HashMap<String,Object>();
+		mapManagerStatus.put("ids", ids);
+		mapManagerStatus.put("managerStatus", 2);
+		managerDao.updateStatus(mapManagerStatus);
 	}
 }

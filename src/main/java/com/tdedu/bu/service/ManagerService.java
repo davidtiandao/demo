@@ -1,5 +1,8 @@
 package com.tdedu.bu.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,8 +17,18 @@ public class ManagerService {
 	public Manager findById(String uid){	
 		return managerDao.get(uid);
 	}
-	public void setManager(Manager manager) throws Exception {
+	public void saveManager(Manager manager) throws Exception {
 		managerDao.insert(manager);
+		
+	}
+	public void deleteManager(String[] managerIds) {
+		managerDao.delete(managerIds);
+	}
+	public void setManagerStatus(String[] managerIds, Integer managerStatus) {
+		Map<String,Object> mapManagerStatus=new HashMap<String,Object>();
+		mapManagerStatus.put("ids", managerIds);
+		mapManagerStatus.put("managerStatus", managerStatus);
+		managerDao.updateStatus(mapManagerStatus);
 		
 	}
 }

@@ -22,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from td_category where ID=#{id}
 	</select>
 	<!-- 查询子节点最大的hierarchy -->
-	<select id="findByHierarchy" resultMap="int" parameterType="string">
+	<select id="findByHierarchy" resultType="Integer" parameterType="string">
 		SELECT MAX(CATEGORY_HIERARCHY) 
 		FROM td_category
 		 WHERE CATEGORY_PARENT_ID=#{id}	

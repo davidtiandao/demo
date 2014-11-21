@@ -39,7 +39,11 @@ public class TestUserInformation {
 		newUser.setUserStatus(1);		
 		ud.update(newUser);
 	}
-	
+	@Test
+	public void testDelete(){
+		String[] arrayids={"127622ef-33b2-46df-b981-f57e4f92cd38","2b510ffa-469a-49ed-8776-4a8a03521e0c"};
+		ud.delete(arrayids);
+	}
 	
 
 }

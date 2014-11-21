@@ -16,7 +16,7 @@ public class TestCourse {
 	CourseDao courseDao=(CourseDao) applicationContext.getBean("courseDao");	
 
 	@Test
-	public void testInsert(){
+	public void testInsert() throws Exception{
 		Course course=new Course();
 		course.setId(UUID.randomUUID().toString());
 		course.setCourseTitle("雅思英语技巧");

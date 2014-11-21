@@ -84,7 +84,6 @@ public class ManagerController {
 		Cell curCell = null;
 		UserInformation userInfo = null;
 		Password password = null;
-		Date curDate = null;
 		final DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd");
 
 		// 循环工作表Sheet
@@ -102,9 +101,7 @@ public class ManagerController {
 				}
 				// 循环列Cell
 				userInfo = new UserInformation();
-				userInfo.setId(UUID.randomUUID().toString());
 				password = new Password();
-				password.setUserId(userInfo.getId());
 				curCell = curRow.getCell(0);
 				if (curCell != null) {
 					password.setUserName(getValue(curCell));
@@ -201,12 +198,13 @@ public class ManagerController {
 					userInfo.setUserStatus(Integer.parseInt(getValue(curCell)));
 				}
 
-				curDate = new Date();
-				
-				password.setStartDate(curDate);
-				password.setEndDate(new DateTime(curDate).plusYears(10)
-						.toDate());
-				userInformationService.save(userInfo, password);
+			
+				try {
+					userInformationService.save(userInfo, password);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 			}
 
@@ -279,15 +277,15 @@ public class ManagerController {
 	 * 状态设置为默认的正常
 	 * 管理员角色默认设置为:普通管理员
 	 */
-	@RequestMapping(value="/manager/setManager")
-	public void setManager(String uid,PrintWriter printWriter){
+	@RequestMapping(value="/manager/saveManager")
+	public void saveManager(String uid,PrintWriter printWriter){
 		Manager manager=new Manager();
 		manager.setManagerId(uid);
 		manager.setManagerRole("普通管理员");
 		manager.setManagerStatus(2);
 		String result="null";
 		try{
-		managerService.setManager(manager);
+		managerService.saveManager(manager);
 		result="设置成功";
 		}catch(Exception e){
 			e.printStackTrace();
@@ -296,5 +294,41 @@ public class ManagerController {
 		printWriter.write(result);
 		printWriter.flush();
 		printWriter.close();
+	}
+	/*
+	 * 取消管理
+	 */
+	@RequestMapping(value="/manager/deleteManager")
+	public void deleteManager(@RequestParam("id")String ids,PrintWriter printWriter){
+		String[] managerIds=ids.split(",");
+		String result="null";
+		try{
+		managerService.deleteManager(managerIds);
+		result="设置成功";
+		}catch(Exception e){
+			e.printStackTrace();
+			result="系统错误，设置失败!";			
+		}
+		printWriter.write(result);
+		printWriter.flush();
+		printWriter.close();
+	}
+	/*
+	 * 暂停开通管理
+	 */
+	@RequestMapping("/manager/setManager")
+	public void setManager(@RequestParam("id")String ids,Integer managerStatus,PrintWriter printWriter){
+		String[] managerIds=ids.split(",");
+		String result="null";
+		try{
+		managerService.setManagerStatus(managerIds,managerStatus);
+		result="OK";
+		}catch(Exception e){
+			result= "Mistake";
+		}
+		printWriter.write(result);
+		printWriter.flush();
+		printWriter.close();
+		
 	}
 }
