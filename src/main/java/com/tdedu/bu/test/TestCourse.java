@@ -41,7 +41,7 @@ public class TestCourse {
 	}
 	@Test
 	public void testSelect(){
-		List<Course> cpurses=courseDao.find(2);
+		List<Course> cpurses=courseDao.find();
 		System.out.println(cpurses.get(0).getCourseTitle().toString());
 	}
 	@Test

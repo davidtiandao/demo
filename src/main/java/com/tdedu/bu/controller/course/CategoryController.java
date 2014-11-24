@@ -16,6 +16,7 @@ import com.tdedu.bu.domain.Category;
 import com.tdedu.bu.service.CategoryService;
 import com.tdedu.bu.web.PageBean;
 
+@RequestMapping("/category")
 public class CategoryController{
 	
 	@Autowired	
@@ -23,7 +24,7 @@ public class CategoryController{
 	/*
 	 *查询课程分类信息 
 	 */
-	@RequestMapping("/category/listCategory")
+	@RequestMapping("/listCategory")
 	public String listCategory(PageBean pageBean,String categoryName,int categoryStatus){
 		Map<String,Object> mapCategory=new HashMap<String, Object>();
 		mapCategory.put("startPage", pageBean.getStartPage());

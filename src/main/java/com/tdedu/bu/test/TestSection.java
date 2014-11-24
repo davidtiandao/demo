@@ -30,7 +30,7 @@ public class TestSection {
 	}
 	@Test
 	public void testSeclect(){
-		List<Section> sections=sectionDao.find(2);
+		List<Section> sections=sectionDao.find();
 		Section section=sectionDao.get("0ebd4887-24cc-48e9-a82f-42eb719335e0");
 		System.out.println(sections.get(0).getSectionName()); 
 		System.out.println(section.getSectionName());
