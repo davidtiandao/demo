@@ -32,7 +32,7 @@ public class TestChapter {
 		chapterDao.get("3f0fed46-1c79-4580-abe4-47e07f7fa28c");
 	}
 	@Test
-	public void update(){
+	public void update() throws Exception{
 		Chapter chapter=new Chapter();
 		chapter.setChapterTitle("雅思口语_口语俄外交部副");
 		chapter.setId("0728101b-a2e8-49c9-b1a0-20ca35b115e5");
@@ -46,7 +46,7 @@ public class TestChapter {
 		chapterDao.update(chapter);
 	}
 	@Test
-	public void delete(){
+	public void delete() throws Exception{
 		chapterDao.deleteById("4b9e42e4-6b27-4086-a3ed-0e5e4b7c72ff");
 	}
 }

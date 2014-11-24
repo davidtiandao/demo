@@ -31,7 +31,7 @@ public class TestShooting {
 		shootingDao.get("7310638f-5ebf-4b8d-afe2-abdf11ac7500");
 	}
 	@Test
-	public void testUpdate(){
+	public void testUpdate() throws Exception{
 		Shooting shooting=new Shooting();
 		shooting.setId("7310638f-5ebf-4b8d-afe2-abdf11ac7500");
 		shooting.setOnlineDate(new Date());
@@ -44,7 +44,7 @@ public class TestShooting {
 		shootingDao.update(shooting);
 	}
 	@Test
-	public void testDelete(){
+	public void testDelete() throws Exception{
 		shootingDao.deleteById("7310638f-5ebf-4b8d-afe2-abdf11ac7500");
 	}
 	

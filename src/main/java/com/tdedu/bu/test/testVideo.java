@@ -25,7 +25,7 @@ public class testVideo {
 		videoDao.insert(video);
 	}
 	@Test
-	public void testUpdate(){
+	public void testUpdate() throws Exception{
 		Video video=new Video();
 		video.setId(UUID.randomUUID().toString());
 		video.setSectionId("25b1f374-2ff0-42b9-ade9-1ffb50a0ad30");
@@ -41,7 +41,7 @@ public class testVideo {
 		System.out.println(videoDao.findBySection("25b1f374-2ff0-42b9-ade9-1ffb50a0ad30").getVideoName());
 	}
 	@Test
-	public void testDelete(){
+	public void testDelete() throws Exception{
 		videoDao.deleteById("924cd230-d05a-4302-8524-cfea606c48a8");
 	}
 	

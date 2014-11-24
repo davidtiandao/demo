@@ -26,7 +26,7 @@ public class TestUserAttention {
 		userAttentionDao.insert(userAttention);
 	}
 	@Test
-	public void testUpdate(){
+	public void testUpdate() throws Exception{
 		UserAttention userAttention=new UserAttention();
 		userAttention.setId("25ed6f55-fd98-4b4e-80be-1b7acd109e7d");
 		userAttention.setCourseId("3f0fed46-1c79-4580-abe4-47e07f7fa28c");
@@ -37,7 +37,7 @@ public class TestUserAttention {
 		userAttentionDao.update(userAttention);
 	}
 	@Test
-	public void testDelete(){
+	public void testDelete() throws Exception{
 		userAttentionDao.deleteById("25ed6f55-fd98-4b4e-80be-1b7acd109e7d");
 	}
 }

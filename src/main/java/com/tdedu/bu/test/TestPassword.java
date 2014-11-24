@@ -42,7 +42,7 @@ public class TestPassword {
 		passwordDao.updatePwd(password);
 	}
 	@Test
-	public void testDelete(){
+	public void testDelete() throws Exception{
 		passwordDao.deleteById("43511cc7-95a6-4244-b2d1-57ee7563bf24");
 		String userId[]=new String[2];
 		userId[0]="43511cc7-95a6-4244-b2d1-57ee7563bf24";

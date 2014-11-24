@@ -30,7 +30,7 @@ public class TestUserInformation {
 		
 	}
 	@Test
-	public void userStatus(){
+	public void userStatus() throws Exception{
 		UserInformation newUser=new UserInformation();
 		newUser.setFullName("test3");
 		newUser.setGender("m");
@@ -40,7 +40,7 @@ public class TestUserInformation {
 		ud.update(newUser);
 	}
 	@Test
-	public void testDelete(){
+	public void testDelete() throws Exception{
 		String[] arrayids={"127622ef-33b2-46df-b981-f57e4f92cd38","2b510ffa-469a-49ed-8776-4a8a03521e0c"};
 		ud.delete(arrayids);
 	}

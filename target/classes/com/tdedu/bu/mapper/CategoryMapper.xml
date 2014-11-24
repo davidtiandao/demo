@@ -48,6 +48,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  #{categoryStatus}
 		)
 	</insert>
+	<!-- 更新状态 -->
+	<update id="updateStatus" parameterType="map">
+		update td_category set CATEGORY_STATUS=#{categoryStatus}
+		where ID in
+		<foreach collection="ids" item="id" open="(" close=")" separator=",">
+			#{id}
+		</foreach>
+	</update>
 	<!-- 更新 -->
 	<update id="update" parameterType="com.tdedu.bu.domain.Category">
 		update td_category

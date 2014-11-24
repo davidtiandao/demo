@@ -121,9 +121,10 @@ private UserInformationService userInformationService;
 		String[] arrayIds=ids.split(",");
 		String result="null";
 		try{
-		userInformationService.setUserStatus(arrayIds,userStatus);
+		userInformationService.updateUserStatus(arrayIds,userStatus);
 		result="OK";
 		}catch(Exception e){
+			
 			result= "Mistake";
 		}
 		printWriter.write(result);

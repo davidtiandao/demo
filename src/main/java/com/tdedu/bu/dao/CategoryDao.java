@@ -11,4 +11,6 @@ public interface CategoryDao extends BaseDao<Category> {
 
 	public Integer findByHierarchy(String uid);
 	public List<Category> findCategoryParent();
+
+	public void updateStatus(Map<String, Object> mapCategoryStatus) throws Exception;
 }

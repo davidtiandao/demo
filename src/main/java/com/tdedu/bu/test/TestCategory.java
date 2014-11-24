@@ -28,7 +28,7 @@ public class TestCategory {
 		cateDao.insert(category);
 	}
 	@Test
-	public void update(){
+	public void update() throws Exception{
 		Category category=new Category();
 		category.setId("8d05fe59-9fcc-46ff-95d9-5f23ba2f5768");
 		category.setCategoryHierarchy(3);
@@ -47,7 +47,7 @@ public class TestCategory {
 		System.out.println(category.get(1).getCategoryName());
 	}
 	@Test
-	public void delete(){
+	public void delete() throws Exception{
 		cateDao.deleteById("8d05fe59-9fcc-46ff-95d9-5f23ba2f5768");
 	}
 	/*
@@ -70,4 +70,13 @@ public class TestCategory {
 	            System.out.println(category.getCategoryName());   
 	        }   		
 	}
+	@Test
+	public void testUpdateStatus() throws Exception{
+		String[] ids={"4226b44e-c785-486b-9b45-8d7af3d6b7c1","abcd"};
+		Map<String,Object> mapCategoryStatus=new HashMap<String, Object>();
+		mapCategoryStatus.put("ids", ids);
+		mapCategoryStatus.put("categoryStatus",53);
+		cateDao.updateStatus(mapCategoryStatus);
+	}
 }
+

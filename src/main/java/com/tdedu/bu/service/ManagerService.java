@@ -21,7 +21,7 @@ public class ManagerService {
 		managerDao.insert(manager);
 		
 	}
-	public void deleteManager(String[] managerIds) {
+	public void deleteManager(String[] managerIds) throws Exception {
 		managerDao.delete(managerIds);
 	}
 	public void setManagerStatus(String[] managerIds, Integer managerStatus) {

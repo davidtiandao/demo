@@ -268,10 +268,10 @@ public List<UserInformation> listUser(Page page){
 	/*
 	 * 修改用户状态,比如删除
 	 */
-	public void setUserStatus(String[] ids,Integer userStatus){
+	public void updateUserStatus(String[] ids,Integer userStatus){
 		Map<String,Object> mapUserStatus=new HashMap<String,Object>();
 		mapUserStatus.put("ids", ids);
-		mapUserStatus.put("userStatus", userStatus);
+		mapUserStatus.put("categoryStatus", userStatus);
 		userInformationDao.updateState(mapUserStatus);
 	}
 

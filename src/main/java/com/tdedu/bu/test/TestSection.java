@@ -37,7 +37,7 @@ public class TestSection {
 	}
 	
 	@Test
-	public void testUpdate(){
+	public void testUpdate() throws Exception{
 		Section section=new Section();
 		section.setId("0ebd4887-24cc-48e9-a82f-42eb719335e0");
 		section.setSectionCreateDate(new Date());
@@ -49,7 +49,7 @@ public class TestSection {
 		sectionDao.update(section);
 	}
 	@Test
-	public void testDelete(){
+	public void testDelete() throws Exception{
 		sectionDao.deleteById("0ebd4887-24cc-48e9-a82f-42eb719335e0");
 	}
 }

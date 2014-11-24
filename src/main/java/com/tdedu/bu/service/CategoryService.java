@@ -1,5 +1,6 @@
 package com.tdedu.bu.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,8 +27,20 @@ public class CategoryService {
 		return categoryDao.findCategoryParent();
 	}
 
-	public void saveCategory(Category category) {
-		// TODO Auto-generated method stub
+	public void saveCategory(Category category) throws Exception {
+		categoryDao.insert(category);
+		
+	}
+
+	public void updateStatus(String[] categoryIds, Integer categoryStatus) throws Exception {
+		Map<String,Object> mapCategoryStatus=new HashMap<String,Object>();
+		mapCategoryStatus.put("ids", categoryIds);
+		mapCategoryStatus.put("userStatus", categoryStatus);
+		categoryDao.updateStatus(mapCategoryStatus);
+	}
+
+	public void updateCategory(Category category) throws Exception {
+		categoryDao.update(category);
 		
 	}
 }
