@@ -28,7 +28,7 @@ public class TestStatus {
 	}
 	@Test
 	public void select(){
-		List<Status> statuss=statusDao.find();
+		List<Status> statuss=statusDao.find(null);
 		System.out.println(statuss.get(0).getStatusName());
 	}
 	@Test

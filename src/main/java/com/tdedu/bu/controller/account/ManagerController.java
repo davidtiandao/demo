@@ -4,12 +4,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
@@ -28,14 +31,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import com.alibaba.fastjson.JSONObject;
 import com.tdedu.bu.domain.Manager;
 import com.tdedu.bu.domain.Password;
 import com.tdedu.bu.domain.UserInformation;
 import com.tdedu.bu.service.ManagerService;
 import com.tdedu.bu.service.PasswordService;
 import com.tdedu.bu.service.UserInformationService;
+import com.tdedu.bu.web.Page;
+import com.tdedu.bu.web.PageUtil;
 
 @Controller
 @RequestMapping("/manager")
@@ -80,7 +87,19 @@ public class ManagerController {
 		}
 		return "xx.jsp"	;
 	}
-
+	@RequestMapping("/listUser")
+	@ResponseBody
+	public String listUser(Integer pageNo) throws Exception{
+		
+		Page page=PageUtil.currentPage();
+		page.setPageNo(pageNo);
+		if("".equals(page.getOrderBy()))
+		page.setOrderBy("CREATE_DATE");
+		List<UserInformation> users= userInformationService.listUser(page);
+		
+		return new String(JSONObject.toJSON(users).toString().getBytes(),"ISO-8859-1");
+		
+	}
 
 	
 

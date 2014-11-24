@@ -42,7 +42,7 @@ public class TestCategory {
 	}
 	@Test
 	public void find(){
-		List<Category> category=cateDao.find();
+		List<Category> category=cateDao.find(null);
 		System.out.println(category.get(0).getCategoryName());
 		System.out.println(category.get(1).getCategoryName());
 	}

@@ -6,23 +6,32 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.alibaba.fastjson.JSONObject;
+
 import com.google.common.base.Joiner;
+import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Multimap;
 
 public class Page {
 	private static final Logger logger = LoggerFactory.getLogger(Page.class);
-	private static ThreadLocal<Page> pa=new ThreadLocal(); 
-	private static JSONObject jsonobj = new JSONObject();
 
 	public static String DEFAULT_PAGESIZE = "10";
 	private int pageNo; // 当前页码
 	private int pageSize; // 每页行数
 	private int totalRecord; // 总记录数
 	private int totalPage; // 总页数
+	private String orderBy;
+	public String getOrderBy() {
+		return orderBy;
+	}
+
+	public void setOrderBy(String orderBy) {
+		this.orderBy = orderBy;
+	}
+
 	private Map<String, String> params; // 查询条件
-	private Map<String, List<String>> paramLists; // 数组查询条件
+	private Multimap<String,String> multiparams;// 模糊查询条件
 	private String searchUrl; // Url地址
 	private String pageNoDisp; // 可以显示的页号(分隔符"|"，总页数变更时更新)
 
@@ -32,9 +41,10 @@ public class Page {
 		totalRecord = 0;
 		totalPage = 0;
 		params = Maps.newHashMap();
-		paramLists = Maps.newHashMap();
+		multiparams =ArrayListMultimap.create();
 		searchUrl = "";
 		pageNoDisp = "";
+		orderBy="";
 	}
 
 	public static Page newBuilder(int pageNo, int pageSize, String url) {
@@ -45,44 +55,7 @@ public class Page {
 		return page;
 	}
 
-	/**
-	 * 查询条件转JSON
-	 */
-	public String getParaJson() {
-		Map<String, Object> map = Maps.newHashMap();
-		for (String key : params.keySet()) {
-			if (params.get(key) != null) {
-				map.put(key, params.get(key));
-			}
-		}
-		String json = "";
-		try {
-			json = jsonobj.toJSON(map).toString();
-		} catch (Exception e) {
-			logger.error("转换JSON失败", params, e);
-		}
-		return json;
-	}
 
-	/**
-	 * 数组查询条件转JSON
-	 */
-	public String getParaListJson() {
-		Map<String, Object> map = Maps.newHashMap();
-		for (String key : paramLists.keySet()) {
-			List<String> lists = paramLists.get(key);
-			if (lists != null && lists.size() > 0) {
-				map.put(key, lists);
-			}
-		}
-		String json = "";
-		try {
-			json = jsonobj.toJSON(map).toString();
-		} catch (Exception e) {
-			logger.error("转换JSON失败", params, e);
-		}
-		return json;
-	}
 
 	/**
 	 * 总页数变化时，更新总页数并计算显示样式
@@ -177,12 +150,12 @@ public class Page {
 		this.params = params;
 	}
 
-	public Map<String, List<String>> getParamLists() {
-		return paramLists;
+	public Multimap<String,String> getMultiparams() {
+		return multiparams;
 	}
 
-	public void setParamLists(Map<String, List<String>> paramLists) {
-		this.paramLists = paramLists;
+	public void setMultiparams(Multimap<String,String> multiparams) {
+		this.multiparams = multiparams;
 	}
 
 	public String getSearchUrl() {
