@@ -102,10 +102,11 @@ private UserInformationService userInformationService;
 	 * 添加用户。同时插入帐号 密码
 	 */
 	@RequestMapping("/addUser")
-	public String addUser(UserInformation information,Password password){
-		information.setId(UUID.randomUUID().toString());
+	public String addUser(UserInformation userInformation,Password password){
+		userInformation.setId(UUID.randomUUID().toString());
+		userInformation.setCreateDate(new Date());
 		try {
-			userInformationService.save(information,password);
+			userInformationService.save(userInformation,password);
 			return "/main.jsp";
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -42,5 +42,12 @@ public class CategoryController{
 	        	mapCategoryParent.put(category.getId(), category.getCategoryName());
 	        }   		
 		return JSON.toJSONString(mapCategoryParent);
-	}	
+	}
+	
+	@RequestMapping("/category/saveCategory")
+	public String saveCategory(Category category){
+		categoryService.saveCategory(category);
+		return null;
+	}
+	
 }

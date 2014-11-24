@@ -68,7 +68,6 @@ public class TestCategory {
 	        while(it.hasNext()){  
 	        	Category category=(Category) it.next();
 	            System.out.println(category.getCategoryName());   
-	        }   
-		
+	        }   		
 	}
 }
