@@ -13,8 +13,7 @@
 		预计开课时间：<input id="telphone" name="telphone" type="text"/><br/>
 		课程分类：<input id="gender" name="gender" type="text"/><br/>
 		图片地址：<input type="file" name="file" id="file" ><br/>
-		<input type="submit"  name="submit" value="submit"  /><br/>
-		
+		<input type="submit"  name="submit" value="submit" /><br/>
 		${error }
 	</form>
 </body>
