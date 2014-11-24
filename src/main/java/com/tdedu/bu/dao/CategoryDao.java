@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.tdedu.bu.domain.Category;
-import com.tdedu.bu.web.PageBean;
 
 public interface CategoryDao extends BaseDao<Category> {
 

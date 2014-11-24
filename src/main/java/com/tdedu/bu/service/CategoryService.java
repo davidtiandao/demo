@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import com.tdedu.bu.dao.CategoryDao;
 import com.tdedu.bu.domain.Category;
-import com.tdedu.bu.web.PageBean;
 @Component("categoryService")
 public class CategoryService {
 	@Autowired
