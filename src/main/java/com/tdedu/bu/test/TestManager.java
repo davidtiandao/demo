@@ -22,7 +22,7 @@ public class TestManager {
 	
 	@Test
 	public void TestSelect(){
-		managerDao.find(2);
+		managerDao.find();
 		managerDao.get("43511cc7-95a6-4244-b2d1-57ee7563bf24");
 	}
 	@Test
