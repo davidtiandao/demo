@@ -16,8 +16,11 @@ public class TestPagenation {
 	@Test
 	public void test(){
 		ApplicationContext app=new ClassPathXmlApplicationContext("applicationContext.xml");
-		Page page=Page.newBuilder(2, 10, "userInformation");
+		Page page=Page.newBuilder(1, 10, "userInformation");
 		page.getParams().put("gender", "女");
+		page.setOrderBy("CREATE_DATE");
+		page.getMultiparams().put("full_name", "154");
+		page.getMultiparams().put("full_name", "sa");
 		UserInformationDao userInformationDao=(UserInformationDao) app.getBean("userInformationDao");
 		UserInformationService service=new UserInformationService();
 		service.setUserInformationDao(userInformationDao);

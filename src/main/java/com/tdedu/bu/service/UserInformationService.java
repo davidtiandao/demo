@@ -19,7 +19,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 
 
+
 import java.util.HashMap;
+
 
 
 
@@ -29,6 +31,7 @@ import org.joda.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.beust.jcommander.internal.Maps;
 import com.tdedu.bu.dao.PasswordDao;
 import com.tdedu.bu.dao.UserInformationDao;
 import com.tdedu.bu.domain.Password;
@@ -216,7 +219,7 @@ public class UserInformationService {
 				}
 
 				curDate = new Date();
-				
+				userInfo.setCreateDate(curDate);
 				password.setStartDate(curDate);
 				password.setEndDate(new DateTime(curDate).plusYears(10)
 						.toDate());
@@ -256,8 +259,9 @@ public class UserInformationService {
 	}
 
 public List<UserInformation> listUser(Page page){
-	return userInformationDao.find();
-	
+	Map map=Maps.newHashMap();
+	map.put("page", page);
+	return userInformationDao.find(map);
 }
 
 

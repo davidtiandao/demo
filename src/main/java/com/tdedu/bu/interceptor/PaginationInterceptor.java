@@ -2,7 +2,6 @@ package com.tdedu.bu.interceptor;
 import java.sql.Connection;  
 import java.sql.PreparedStatement;  
 import java.sql.ResultSet;  
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;  
   
@@ -73,9 +72,26 @@ public class PaginationInterceptor implements Interceptor{
       int offset = (page.getPageNo() - 1) * page.getPageSize();  
     
       StringBuffer sb = new StringBuffer();
+      sb.append(originalSql);
+       boolean flag=true;
       for(Entry<String,String> param:page.getParams().entrySet()){
-    	  sb.append(originalSql).append(" and ").append(param.getKey()).append(" = ").append("'").append(param.getValue()).append("'"); 
+    	
+    		  sb.append(" AND ").append(param.getKey()).append(" = ").append("'").append(param.getValue()).append("'"); 
+    	
       }
+      for(String value : page.getMultiparams().values()) {  
+    	  String str=page.getMultiparams().keySet().iterator().next();
+    	  if(str!=null){
+    		  if(flag){
+    			  sb.append(" AND ").append(str);
+    			  flag=false;
+    	  }else sb.append(" OR ").append(str);
+    		  }
+    	 
+          sb.append(" LIKE '%").append(value).append("%'");
+          
+         } 
+      if(!"".equals(page.getOrderBy())){sb.append(" ORDER BY ").append(page.getOrderBy()).append(" DESC");}
       sb.append(" limit ").append(offset).append(",").append(page.getPageSize());  
       BoundSql newBoundSql = copyFromBoundSql(mappedStatement, boundSql, sb.toString());  
       MappedStatement newMs = copyFromMappedStatement(mappedStatement,new BoundSqlSqlSource(newBoundSql));    
