@@ -26,4 +26,9 @@ public class CategoryService {
 	public List<Category> findCategoryParent(){
 		return categoryDao.findCategoryParent();
 	}
+
+	public void saveCategory(Category category) {
+		// TODO Auto-generated method stub
+		
+	}
 }

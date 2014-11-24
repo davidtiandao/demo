@@ -49,4 +49,11 @@ public class TestPassword {
 		userId[1]="127622ef-33b2-46df-b981-f57e4f92cd38";
 		passwordDao.delete(userId);
 	}
+	@Test
+	public void testFindByPwd(){
+		Password password=new Password();
+		password.setUserName("ewlohjg");
+		password.setPassword("wgkje");
+		passwordDao.findByPwd(password);	
+	}
 }

@@ -36,8 +36,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</set>
 		where MANAGER_ID =#{managerId}
 	</update>
+	<!-- 修改状态 -->
+	<update id="updateStatus" parameterType="map">
+		update td_manager set MANAGER_STATUS=#{managerStatus}
+		where MANAGER_ID in
+		<foreach collection="ids" item="managerId" open="(" close=")" separator=",">
+			#{managerId}
+		</foreach>
+	</update>
 	<!-- 删除 -->
 	<delete id="deleteById" parameterType="string">
 		delete from td_manager where MANAGER_ID=#{managerId};
 	</delete>
+	<!-- 删除多条 -->
+	<delete id="delete" >
+		delete from td_manager
+		where MANAGER_ID in
+		<foreach collection="array" item="managerId" open="(" close=")" separator=",">
+			#{managerId}
+		</foreach>
+	</delete>
+	
 </mapper>

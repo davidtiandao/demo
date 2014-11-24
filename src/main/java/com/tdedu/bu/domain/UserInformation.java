@@ -25,6 +25,7 @@ public class UserInformation {
 	private String photo;
 	private int userStatus;
 	private String description;
+	private Date createDate;
 
 	public String getDescription() {
 		return description;
@@ -44,7 +45,7 @@ public class UserInformation {
 			String telphone, String email, String qq, String weixin,
 			String otherContent, String cardType, String cardNo,
 			String nationality, String politicalAddiliation, String photo,
-			int userStatus) {
+			int userStatus,Date createDate) {
 		super();
 		this.id = id;
 		this.fullName = fullName;
@@ -64,6 +65,7 @@ public class UserInformation {
 		this.politicalAddiliation = politicalAddiliation;
 		this.photo = photo;
 		this.userStatus = userStatus;
+		this.createDate=createDate;
 	}
 	
 	public String getId() {
@@ -174,6 +176,15 @@ public class UserInformation {
 	public void setUserStatus(int userStatus) {
 		this.userStatus = userStatus;
 	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+	
 	
 	
 	

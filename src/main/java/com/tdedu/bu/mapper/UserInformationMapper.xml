@@ -26,8 +26,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="politicalAddiliation" column="POLITICAL_ADDILIATION"/>
 		<result property="photo" column="PHOTO"/>
 		<result property="userStatus" column="USER_STATUS"/>
-		
 		<result property="description" column="DESCRIPTION"/>
+		<result property="createDate" column="CREATE_DATE"/>
 		
 	</resultMap>
 	
@@ -49,7 +49,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 		mysql不用写  -->
 	<insert id="insert" parameterType="com.tdedu.bu.domain.UserInformation">
 		insert into td_userinformation
-		(ID,FULL_NAME,GENDER,BIRTHDAY,HOMETOWN,LIVE_PLACE,PHONE,TELPHONE,EMAIL,QQ,WEIXIN,OTHER_CONTENT,CARD_TYPE,CARD_NO,NATIONALITY,POLITICAL_ADDILIATION,PHOTO,USER_STATUS,DESCRIPTION)
+		(ID,FULL_NAME,GENDER,BIRTHDAY,HOMETOWN,LIVE_PLACE,PHONE,TELPHONE,EMAIL,QQ,WEIXIN,OTHER_CONTENT,CARD_TYPE,CARD_NO,NATIONALITY,POLITICAL_ADDILIATION,PHOTO,USER_STATUS,DESCRIPTION,CREATE_DATE)
 		values
 			
 		(	#{id},
@@ -70,7 +70,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{politicalAddiliation},
 			#{photo},
 			#{userStatus},
-			#{description}
+			#{description},
+			#{createDate}
 		)
 	</insert>
 	
@@ -115,7 +116,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<!-- 修改状态 -->
-	<update id="updateState" >
+	<update id="updateState" parameterType="map">
 		update td_userinformation set USER_STATUS=#{userStatus}
 		where ID in
 		<foreach collection="ids" item="id" open="(" close=")" separator=",">
