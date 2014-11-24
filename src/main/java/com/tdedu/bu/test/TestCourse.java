@@ -28,7 +28,7 @@ public class TestCourse {
 		courseDao.insert(course);
 	}
 	@Test
-	public void testUpadte(){
+	public void testUpadte() throws Exception{
 		Course course=new Course();
 		course.setId(UUID.randomUUID().toString());
 		course.setCourseTitle("雅思英语技巧和写作");
@@ -45,7 +45,7 @@ public class TestCourse {
 		System.out.println(cpurses.get(0).getCourseTitle().toString());
 	}
 	@Test
-	public void testDelete(){
+	public void testDelete() throws Exception{
 		courseDao.deleteById("4253e1a6-a9d4-43b1-a5b1-aab25b205c5b");
 	}
 }

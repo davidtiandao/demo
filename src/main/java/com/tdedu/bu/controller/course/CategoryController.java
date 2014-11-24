@@ -1,12 +1,15 @@
 package com.tdedu.bu.controller.course;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.alibaba.fastjson.JSON;
 import com.tdedu.bu.domain.Category;
@@ -43,11 +46,52 @@ public class CategoryController{
 	        }   		
 		return JSON.toJSONString(mapCategoryParent);
 	}
-	
+	/*
+	 * 增加课程分类
+	 */
 	@RequestMapping("/category/saveCategory")
-	public String saveCategory(Category category){
+	public void saveCategory(Category category,PrintWriter printWriter ){
+		String result="null";
+		try{
 		categoryService.saveCategory(category);
-		return null;
+		result="OK";
+		}catch(Exception e){
+			result="Mistake";
+		}
+		printWriter.write(result);
+		printWriter.flush();
+		printWriter.close();
+	}	
+	/*
+	 * 设置可见隐藏
+	 */
+	@RequestMapping("/category/setCategoryStatus")
+	public void setCategoryStatus(@RequestParam("id") String ids, Integer categoryStatus,PrintWriter printWriter){
+		String[] categoryIds=ids.split(",");
+		String result="null";
+		try{
+			categoryService.updateStatus(categoryIds,categoryStatus);
+			result="OK";
+		}catch(Exception e){
+			e.printStackTrace();
+			result="Mistake";
+		}
+		printWriter.write(result);
+		printWriter.flush();
+		printWriter.close();
 	}
-	
+	/*
+	 * 修改课程分类
+	 */
+	@RequestMapping("/category/updateCategory")
+	public String updateCategory(Category category,Model model){
+		try{
+		categoryService.updateCategory(category);
+			return "/category/listCategory";
+		}catch(Exception e){
+			e.printStackTrace();
+			model.addAttribute("error", "修改失败");
+			return "/category/listCategory";
+		}		
+	}
 }

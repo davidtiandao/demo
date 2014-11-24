@@ -20,7 +20,7 @@ public class TestStatus {
 		statusDao.insert(status);
 	}
 	@Test
-	public void updateStatus(){
+	public void updateStatus() throws Exception{
 		Status status=new Status();
 		status.setStatusNo(4);
 		status.setStatusName("帐号过期11");
