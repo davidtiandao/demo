@@ -44,14 +44,15 @@ public class ShootingController {
 				System.out.println(repositoryFile);
 				shooting.setId(UUID.randomUUID().toString());
 				shooting.setPhotoUrl(repositoryFile);
+				shooting.setOnlineDate(new Date());
 				shootingService.saveShooting(shooting);
+				return "main.jsp";
 			} catch (Exception e) {
-				e.printStackTrace();
+				e.printStackTrace();				
 			}
+		
 		}
-		
-		
-		return null;
+		return "XX.jsp";
 	}
 	
 }

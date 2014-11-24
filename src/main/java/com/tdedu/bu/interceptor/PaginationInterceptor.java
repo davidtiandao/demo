@@ -60,7 +60,7 @@ public class PaginationInterceptor implements Interceptor{
       ResultSet rs = countStmt.executeQuery();  
       int totpage=0;  
       if (rs.next()) {    
-        totpage = rs.getInt(1);    
+        totpage = rs.getInt(1); 
       }  
       rs.close();    
       countStmt.close();    
