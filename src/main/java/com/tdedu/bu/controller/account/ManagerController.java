@@ -89,15 +89,15 @@ public class ManagerController {
 	}
 	@RequestMapping("/listUser")
 	@ResponseBody
-	public String listUser(Integer pageNo) throws Exception{
+	public String listUser(Integer pageNo,HttpServletResponse response) throws Exception{
+		response.setHeader("Content-Type", "text/plain;charset=UTF-8");
 		
 		Page page=PageUtil.currentPage();
 		page.setPageNo(pageNo);
 		if("".equals(page.getOrderBy()))
 		page.setOrderBy("CREATE_DATE");
 		List<UserInformation> users= userInformationService.listUser(page);
-		
-		return new String(JSONObject.toJSON(users).toString().getBytes(),"ISO-8859-1");
+		return JSONObject.toJSON(users).toString();
 		
 	}
 
