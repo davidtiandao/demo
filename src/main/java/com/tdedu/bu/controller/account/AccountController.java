@@ -2,8 +2,6 @@ package com.tdedu.bu.controller.account;
 import java.awt.image.BufferedImage;
 import java.io.PrintWriter;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 import javax.imageio.ImageIO;
@@ -75,7 +73,7 @@ private UserInformationService userInformationService;
 		 return "/main.jsp";
 	}
 
-	@RequestMapping(value = "captcha-image")  
+	@RequestMapping(value = "/captcha-image")  
 	public ModelAndView getKaptchaImage(HttpServletRequest request, HttpServletResponse response) throws Exception {  
 		 HttpSession session = request.getSession();  
 		    String code = (String)session.getAttribute(Constants.KAPTCHA_SESSION_KEY);        

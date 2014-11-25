@@ -12,6 +12,7 @@
 		电话：<input id="phone" name="phone" type="text"/><br/>
 		家庭电话：<input id="telphone" name="telphone" type="text"/><br/>
 		性别：<input id="gender" name="gender" type="text"/><br/>
+		性别：<input id="birthday" name="birthday" type="text"/><br/>
 		家庭地址：<input id="hometown" name="hometown" type="text"/><br/>
 		现居地：<input id="livePlace" name="livePlace" type="text"/><br/>
 		用户状态：<input id="userStatus" name="userStatus" type="text"><br>
@@ -20,5 +21,18 @@
 				<input type="submit"  name="submit" value="submit"  /><br/>
 		${error }
 	</form>
+	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.1.js"></script>
+	<script type="text/javascript">
+	$.ajax({
+		url:'${pageContext.request.contextPath}/manager/listUser.action?pageNo=1',
+		method:'get',
+		success:function(date){
+			alert(date);
+		}
+		
+	});
+	</script>
+	
 </body>
 </html>

@@ -5,10 +5,13 @@ import java.util.Date;
   * 用户信息表 
   */
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class UserInformation {
 	private String id;
 	private String fullName;
 	private String gender;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date birthday;
 	private String hometown;
 	private String livePlace;
