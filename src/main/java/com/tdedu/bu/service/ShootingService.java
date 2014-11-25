@@ -15,4 +15,14 @@ public class ShootingService {
 		shootingDao.insert(shooting);		
 	}
 
+	public void deleteShooting(String[] shootingIds) throws Exception {
+		shootingDao.delete(shootingIds);
+		
+	}
+
+	public void updateShooting(Shooting shooting) throws Exception {
+		shootingDao.update(shooting);
+		
+	}
+
 }

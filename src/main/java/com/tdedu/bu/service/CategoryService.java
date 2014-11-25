@@ -24,6 +24,7 @@ public class CategoryService {
 	}
 	
 	public List<Category> findCategoryParent(){
+		
 		return categoryDao.findCategoryParent();
 	}
 

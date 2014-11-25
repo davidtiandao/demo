@@ -1,6 +1,7 @@
 package com.tdedu.bu.controller.course;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.util.Date;
 import java.util.UUID;
 
@@ -9,6 +10,7 @@ import javax.servlet.ServletContext;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
@@ -50,9 +52,37 @@ public class ShootingController {
 			} catch (Exception e) {
 				e.printStackTrace();				
 			}
-		
 		}
 		return "XX.jsp";
+	}
+	
+	@RequestMapping("/deleteShooting")
+	public void deleteShooting(@RequestParam("id")String ids,PrintWriter printWrite){
+		String[] shootingIds=ids.split(",");
+		String result="null";
+		try{
+		shootingService.deleteShooting(shootingIds);
+		result="OK";
+		}catch(Exception e){
+			e.printStackTrace();
+			result="Mistake";
+		}
+		printWrite.write(result);
+		printWrite.flush();
+		printWrite.close();
+	}
+	
+	@RequestMapping("/updateShooting")
+	public String updateShooting(Shooting shooting,Model model){
+		try {
+			shootingService.updateShooting(shooting);
+			model.addAttribute("success","操作成功");
+			return "listShooting.jsp";
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("error", "更新失败");
+			return "XX.jsp";
+		}
 	}
 	
 }

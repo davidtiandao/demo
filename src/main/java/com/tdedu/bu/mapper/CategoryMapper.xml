@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	<!-- 查询父节点 -->
 	<select id="findCategoryParent" resultMap="categoryRM">
-		select * from td_category where CATEGORY_PARENT_ID is null;
+		select * from td_category where CATEGORY_PARENT_ID ="0";
 	</select>
 	<!-- 按id查询 -->
 	<select id="get" resultMap="categoryRM" parameterType="string" >
