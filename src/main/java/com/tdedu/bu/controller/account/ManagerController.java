@@ -89,9 +89,8 @@ public class ManagerController {
 	}
 	@RequestMapping("/listUser")
 	@ResponseBody
-	public String listUser(Integer pageNo,HttpServletResponse response) throws Exception{
-		response.setHeader("Content-Type", "text/plain;charset=UTF-8");
-		
+	public String listUser(Integer pageNo) throws Exception{
+
 		Page page=PageUtil.currentPage();
 		page.setPageNo(pageNo);
 		if("".equals(page.getOrderBy()))
