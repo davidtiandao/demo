@@ -6,6 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap type="com.tdedu.bu.domain.UserComment" id="commentRM">
 		<id property="id" column="USER_COMMENT_ID"/>
 		<result property="userId" column="USERID"/>
+		<result property="userName" column="USERNAME"/>
 		<result property="sectionId" column="SECTION_ID"/>
 		<result property="comment" column="COMMENT"/>
 		<result property="commentDate" column="COMMENT_DATE"/>
@@ -19,9 +20,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 插入 -->
 	<insert id="insert" parameterType="com.tdedu.bu.domain.UserComment">
 		insert into td_usercomment
-		(USER_COMMENT_ID,USERID,SECTION_ID,COMMENT,COMMENT_DATE,COMMENT_STATUS,PARENT_ID") values
+		(USER_COMMENT_ID,USERID,USERNAME,SECTION_ID,COMMENT,COMMENT_DATE,COMMENT_STATUS,PARENT_ID") values
 		( #{id},
-		  #{userId},	
+		  #{userId},
+		  #{userName},	
 		  #{sectionId},
 		  #{comment},
 		  #{commentDate},
@@ -34,6 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update td_usercomment
 		<set>
 			<if test="userId != null">USERID=#{userId},</if>
+			<if test="userName != null">USERNAME=#{userName},</if>
 			<if test="sectionId != null">SECTION_ID=#{sectionId},</if>
 			<if test="comment != null">COMMENT=#{comment},</if>
 			<if test="commentDate != null">COMMENT_DATE=#{commentDate},</if>
