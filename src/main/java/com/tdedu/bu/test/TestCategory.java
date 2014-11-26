@@ -37,7 +37,7 @@ public class TestCategory {
 	}
 	@Test
 	public void select(){
-		Category category=cateDao.get("8d05fe59-9fcc-46ff-95d9-5f23ba2f5768");
+		Category category=cateDao.get("a7a40380-948a-41fd-a05f-f8b32177d817");
 		System.out.println(category.getCategoryName());
 	}
 	@Test

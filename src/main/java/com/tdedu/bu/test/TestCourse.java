@@ -23,7 +23,7 @@ public class TestCourse {
 		course.setCourseVersion("-101-");
 		course.setCourseContent("wgfhjewhkj");
 		course.setCourseCreateDate( new Date());
-		course.setCategoryNo("4226b44e-c785-486b-9b45-8d7af3d6b7c1");
+		course.setCategoryNo("a7a40380-948a-41fd-a05f-f8b32177d817");
 		course.setCourseStatus(2);
 		courseDao.insert(course);
 	}

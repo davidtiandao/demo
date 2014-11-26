@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- resultMap映射 -->
 	<resultMap type="com.tdedu.bu.domain.UserInformation" id="userRM">
 		<!-- 主键 -->
-		<id property="id" column="ID"/>
+		<id property="id" column="USER_ID"/>
 		<!-- 一般属性 -->
 		<result property="fullName" column="FULL_NAME"/>
 		<result property="gender" column="GENDER"/>
@@ -41,7 +41,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 查询一个 -->
 	<select id="get" resultMap="userRM">
 		select * from td_userinformation
-		where ID=#{uid}
+		where USER_ID=#{uid}
 	</select>
 	
 	<!-- 新增  oracle jdbc驱动 当这个值为null时，必须告诉它当前字段默认值的类型jdbcType=VARCHAR （mybatis定义）,
@@ -49,7 +49,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 		mysql不用写  -->
 	<insert id="insert" parameterType="com.tdedu.bu.domain.UserInformation">
 		insert into td_userinformation
-		(ID,FULL_NAME,GENDER,BIRTHDAY,HOMETOWN,LIVE_PLACE,PHONE,TELPHONE,EMAIL,QQ,WEIXIN,OTHER_CONTENT,CARD_TYPE,CARD_NO,NATIONALITY,POLITICAL_ADDILIATION,PHOTO,USER_STATUS,DESCRIPTION,CREATE_DATE)
+		(USER_ID,FULL_NAME,GENDER,BIRTHDAY,HOMETOWN,LIVE_PLACE,PHONE,TELPHONE,EMAIL,QQ,WEIXIN,OTHER_CONTENT,CARD_TYPE,CARD_NO,NATIONALITY,POLITICAL_ADDILIATION,PHOTO,USER_STATUS,DESCRIPTION,CREATE_DATE)
 		values
 			
 		(	#{id},
@@ -97,19 +97,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="photo != null">PHOTO=#{photo},</if>
 			<if test="description != null">DESCRIPTION=#{description},</if>
 		</set>
-		where ID=#{id}
+		where USER_ID=#{id}
 	</update>
 	
 	<!-- 删除一条 -->
 	<delete id="deleteById" parameterType="string" >
 		delete from td_userinformation
-		where ID=#{uid}
+		where USER_ID=#{uid}
 	</delete>
 	
 	<!-- 删除多条（一维字符串数组） -->
 	<delete id="delete" >
 		delete from td_userinformation
-		where ID in
+		where USER_ID in
 		<foreach collection="array" item="id" open="(" close=")" separator=",">
 			#{id}
 		</foreach>
@@ -118,7 +118,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 修改状态 -->
 	<update id="updateState" parameterType="map">
 		update td_userinformation set USER_STATUS=#{userStatus}
-		where ID in
+		where USER_ID in
 		<foreach collection="ids" item="id" open="(" close=")" separator=",">
 			#{id}
 		</foreach>

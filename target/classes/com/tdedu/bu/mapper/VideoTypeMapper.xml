@@ -4,19 +4,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tdedu.bu.dao.VideoTypeDao">
 	<resultMap type="com.tdedu.bu.domain.VideoType" id="typeRM">
-		<id property="id" column="ID"/>
+		<id property="id" column="VIDEO_TYPE_ID"/>
 		<result property="videoHigh" column="VODEO_HIGH"/>
 		<result property="videoWide" column="VIDEO_WIDE"/>
 		<result property="videoLength" column="VIDEO_LENGTH"/>
 	</resultMap>
 	<!-- 按id查询 -->
 	<select id="get" resultMap="typeRM">
-		select * from td_videotype where ID=#{id}
+		select * from td_videotype where VIDEO_TYPE_ID=#{id}
 	</select>
 	<!-- 插入 -->
 	<insert id="insert" parameterType="com.tdedu.bu.domain.VideoType">
 		insert into td_videotype
-		(ID,VODEO_HIGH,VIDEO_WIDE,VIDEO_LENGTH) values
+		(VIDEO_TYPE_ID,VODEO_HIGH,VIDEO_WIDE,VIDEO_LENGTH) values
 		( #{id},
 		  #{videoHigh},	
 		  #{videoWide},
@@ -31,10 +31,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="videoWide != null">VIDEO_WIDE=#{videoWide},</if>
 			<if test="videoLength != null">VIDEO_LENGTH=#{videoLength},</if>
 		</set>
-		where ID =#{id}
+		where VIDEO_TYPE_ID =#{id}
 	</update>
 	<!-- 删除 -->
 	<delete id="deleteById" parameterType="string">
-		delete from td_videotype　WHERE ID=#{id}
+		delete from td_videotype　WHERE VIDEO_TYPE_ID=#{id}
 	</delete>
 </mapper>

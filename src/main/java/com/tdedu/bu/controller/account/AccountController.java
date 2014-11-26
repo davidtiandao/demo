@@ -68,7 +68,7 @@ private UserInformationService userInformationService;
 			 return "/login.jsp";
 		 }	    
 		 UserInformation userInformation=userInformationService.findById(passwordNow.getUserId());
-		 model.addAttribute("currUser1",userInformation);
+		 model.addAttribute("currUser",userInformation);
 		 session.setAttribute("currUser", userInformation);
 		 return "/main.jsp";
 	}
@@ -129,5 +129,48 @@ private UserInformationService userInformationService;
 		printWriter.flush();
 		printWriter.close();
 	}
+	/*
+	 * 个人信息修改
+	 */
+	@RequestMapping("/updateUserInformation")
+	public String updateInformation(UserInformation userInformation,HttpSession session,PrintWriter printWriter){
+		try {
+			userInformationService.updateUser(userInformation);
+			session.setAttribute("currUser", userInformation);
+			return "xx.jsp";
+		} catch (Exception e) {
+			e.printStackTrace();
+			printWriter.write("更新失败");
+			printWriter.flush();
+			return null;
+		}finally{
+			printWriter.close();
+		}
+	}
+	/*
+	 * 修改密码
+	 */
+	@RequestMapping("/updatePassword")
+	public String updateInformation(String  oldPassword,String newPassword,HttpSession session,Model model){
+		UserInformation userInformation=(UserInformation) session.getAttribute("currUser");
+		Password password=new Password();
+		password.setUserId(userInformation.getId());
+		password.setPassword(oldPassword);
+		Password passwordNow= passwordService.findByPwd(password);
+	    if(passwordNow == null){
+			 model.addAttribute("error", "密码错误");
+	   }else{
+		   password.setPassword(newPassword);
+		   try {
+			passwordService.updatePassword(password);
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("error", "更新失败");
+		}
+	   }
+		return "xx.jsp";
+		
+	}
+	
 
 }

@@ -4,8 +4,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tdedu.bu.dao.UserAttentionDao">
 	<resultMap type="com.tdedu.bu.domain.UserAttention" id="attentionRM">
-		<id property="id" column="ID"/>
-		<result property="userId" column="USERID"/>
+		<id property="id" column="USER_ATTENTION_ID"/>
+		<result property="userId" column="USER_ID"/>
 		<result property="shootingId" column="SHOOTING_ID"/>
 		<result property="shootingDate" column="SHOOTING_DATE"/>
 		<result property="courseId" column="COURSE_ID"/>
@@ -13,12 +13,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	<!-- 按id查询 -->
 	<select id="get" resultMap="attentionRM">
-		select * from td_userattention where ID=#{id}
+		select * from td_userattention where USER_ATTENTION_ID=#{id}
 	</select>
 	<!-- 插入 -->
 	<insert id="insert" parameterType="com.tdedu.bu.domain.UserAttention">
 		insert into td_userattention
-		(ID,USERID,SHOOTING_ID,SHOOTING_DATE,COURSE_ID,SHOOTING_ATTENTION_STATUS) values
+		(USER_ATTENTION_ID,USER_ID,SHOOTING_ID,SHOOTING_DATE,COURSE_ID,SHOOTING_ATTENTION_STATUS) values
 		( #{id},
 		  #{userId},	
 		  #{shootingId},
@@ -31,16 +31,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="update" parameterType="com.tdedu.bu.domain.UserAttention">
 		update td_userattention
 		<set>
-			<if test="userId != null">USERID=#{userId},</if>
+			<if test="userId != null">USER_ID=#{userId},</if>
 			<if test="shootingId != null">SHOOTING_ID=#{shootingId},</if>
 			<if test="shootingDate != null">SHOOTING_DATE=#{shootingDate},</if>
 			<if test="courseId != null">COURSE_ID=#{courseId},</if>
 			<if test="shootingAttentionStatus != null">SHOOTING_ATTENTION_STATUS=#{shootingAttentionStatus},</if>
 		</set>
-		where ID =#{id}
+		where USER_ATTENTION_ID =#{id}
 	</update>
 	<!-- 删除 -->
 	<delete id="deleteById" parameterType="string">
-		delete from  td_userattention where ID=#{id};
+		delete from  td_userattention where USER_ATTENTION_ID=#{id};
 	</delete>
 </mapper>

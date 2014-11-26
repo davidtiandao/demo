@@ -1,5 +1,6 @@
 package com.tdedu.bu.test;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -24,6 +25,8 @@ public class TestUserInformation {
 		newUser.setFullName("test2");
 		newUser.setGender("m");
 		newUser.setUserStatus(50);
+		newUser.setPhone("ergjnrejk");
+		newUser.setCreateDate(new Date());
 		newUser.setId(UUID.randomUUID().toString());
 		newUser.setUserStatus(1);		
 		userInformationService.save(newUser);
@@ -35,13 +38,13 @@ public class TestUserInformation {
 		newUser.setFullName("test3");
 		newUser.setGender("m");
 		newUser.setUserStatus(50);
-		newUser.setId("43511cc7-95a6-4244-b2d1-57ee7563bf24");
+		newUser.setId("693b6016-0891-4a55-92d3-8ce0e4e7a99b");
 		newUser.setUserStatus(1);		
 		ud.update(newUser);
 	}
 	@Test
 	public void testDelete() throws Exception{
-		String[] arrayids={"127622ef-33b2-46df-b981-f57e4f92cd38","2b510ffa-469a-49ed-8776-4a8a03521e0c"};
+		String[] arrayids={"693b6016-0891-4a55-92d3-8ce0e4e7a99b"};
 		ud.delete(arrayids);
 	}
 	

@@ -18,22 +18,22 @@ public class TestUserAttention {
 	public void testInset() throws Exception{
 		UserAttention userAttention=new UserAttention();
 		userAttention.setId(UUID.randomUUID().toString());
-		userAttention.setCourseId("3f0fed46-1c79-4580-abe4-47e07f7fa28c");
+		userAttention.setCourseId("2d9bcb24-c146-43c4-9a04-0a1c31e8ccf2");
 		userAttention.setShootingAttentionStatus(1);
 		userAttention.setShootingDate(new Date());
-		userAttention.setShootingId("e7f147fb-9757-4d3f-a4d8-49e205161e8d");
-		userAttention.setUserId("43511cc7-95a6-4244-b2d1-57ee7563bf24");
+		userAttention.setShootingId("2e809521-8639-42a5-8127-27c3e8ea8127");
+		userAttention.setUserId("9aaba07e-9ad5-4414-9a7a-3e22ace47170");
 		userAttentionDao.insert(userAttention);
 	}
 	@Test
 	public void testUpdate() throws Exception{
 		UserAttention userAttention=new UserAttention();
 		userAttention.setId("25ed6f55-fd98-4b4e-80be-1b7acd109e7d");
-		userAttention.setCourseId("3f0fed46-1c79-4580-abe4-47e07f7fa28c");
+		userAttention.setCourseId("2d9bcb24-c146-43c4-9a04-0a1c31e8ccf2");
 		userAttention.setShootingAttentionStatus(2);
 		userAttention.setShootingDate(new Date());
-		userAttention.setShootingId("e7f147fb-9757-4d3f-a4d8-49e205161e8d");
-		userAttention.setUserId("43511cc7-95a6-4244-b2d1-57ee7563bf24");
+		userAttention.setShootingId("2e809521-8639-42a5-8127-27c3e8ea8127");
+		userAttention.setUserId("9aaba07e-9ad5-4414-9a7a-3e22ace47170");
 		userAttentionDao.update(userAttention);
 	}
 	@Test

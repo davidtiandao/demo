@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tdedu.bu.dao.ChapterDao">
 	<resultMap type="com.tdedu.bu.domain.Chapter" id="ChapterRM">
-		<id property="id" column="ID"/>
+		<id property="id" column="CHAPTER_ID"/>
 		<result property="chapterTitle" column="CHAPTER_TITLE"/>
 		<result property="chapterVersion" column="CHAPTER_VERSION"/>
 		<result property="chapterNo" column="CHAPTER_NO"/>
@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="chapterStatus" column="CHAPTER_STATUS"/>
 	</resultMap>
 	<select id="get" resultMap="ChapterRM" parameterType="string">
-		select * from td_chapter where ID=#{id}
+		select * from td_chapter where CHAPTER_ID=#{id}
 	</select>
 	<select id="find" resultMap="ChapterRM" parameterType="int">
 		select * from td_chapter where CHAPTER_NO=#{chapterNo}
@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="insert" parameterType="com.tdedu.bu.domain.Chapter">
 		insert into td_chapter
-		(ID,CHAPTER_TITLE,CHAPTER_VERSION,CHAPTER_NO,CHAPTER_CREATE_DATE,CHAPTER_UPDATE_DATE,
+		(CHAPTER_ID,CHAPTER_TITLE,CHAPTER_VERSION,CHAPTER_NO,CHAPTER_CREATE_DATE,CHAPTER_UPDATE_DATE,
 			CHAPTER_INTRODUCTION,CHAPTER_CONTENT,CHAPTER_RESOURCE,COURSE_ID,HIERARCHY,CHAPTER_PARENT_ID,CHAPTER_STATUS) values
 		( #{id},
 		  #{chapterTitle},	
@@ -60,9 +60,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="chapterParentId != null">CHAPTER_PARENT_ID=#{chapterParentId},</if>
 			<if test="chapterStatus!= null">CHAPTER_STATUS=#{chapterStatus},</if>
 		</set>
-		where ID =#{id}
+		where CHAPTER_ID =#{id}
 	</update>
 	<delete id="deleteById" parameterType="string">
-		delete from td_chapter where ID=#{id};
+		delete from td_chapter where CHAPTER_ID=#{id};
 	</delete>
 </mapper>

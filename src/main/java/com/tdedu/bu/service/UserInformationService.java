@@ -20,7 +20,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 
 
+
 import java.util.HashMap;
+
 
 
 
@@ -273,6 +275,10 @@ public List<UserInformation> listUser(Page page){
 		mapUserStatus.put("ids", ids);
 		mapUserStatus.put("categoryStatus", userStatus);
 		userInformationDao.updateState(mapUserStatus);
+	}
+	public void updateUser(UserInformation userInformation) throws Exception {
+		userInformationDao.update(userInformation);
+	
 	}
 
 }

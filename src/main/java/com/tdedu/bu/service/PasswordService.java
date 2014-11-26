@@ -22,6 +22,11 @@ public class PasswordService  {
 
 	public Password findByPwdAndId(Password password) {
 		return passwordDao.findByPwdAndId(password);
+	}
+
+	public void updatePassword(Password password) throws Exception {
+		passwordDao.update(password);
+		
 	}	
 
 }
