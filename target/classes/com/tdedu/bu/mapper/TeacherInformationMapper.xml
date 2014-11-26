@@ -4,18 +4,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tdedu.bu.dao.TeacherInformationDao">
 	<resultMap type="com.tdedu.bu.domain.TeacherInformation" id="teacherRM">
-		<id property="teacherId" column="TEACHERID"/>
+		<id property="teacherId" column="TECHAER_ID"/>
 		<result property="teacherIntroduction" column="TEACHER_INFORMATION"/>
 		<result property="teacherDirection" column="TEACHER_DIRECTION"/>
 	</resultMap>
 	<!-- 按id查询 -->
 	<select id="get" resultMap="teacherRM">
-		select * from td_teacherinformation where TEACHERID=#{teacherId}
+		select * from td_teacherinformation where TECHAER_ID=#{teacherId}
 	</select>
 	<!-- 插入 -->
 	<insert id="insert" parameterType="com.tdedu.bu.domain.TeacherInformation">
 		insert into td_teacherinformation
-		(TEACHERID,TEACHER_INFORMATION,TEACHER_DIRECTION) values
+		(TECHAER_ID,TEACHER_INFORMATION,TEACHER_DIRECTION) values
 		( #{teacherId},
 		  #{teacherIntroduction},	
 		  #{teacherDirection}
@@ -28,10 +28,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="teacherIntroduction != null">TEACHER_INFORMATION=#{teacherIntroduction},</if>
 			<if test="teacherDirection != null">TEACHER_DIRECTION=#{teacherDirection}</if>
 		</set>
-		where TEACHERID =#{teacherId}
+		where TECHAER_ID =#{teacherId}
 	</update>
 	<!-- 删除 -->
 	<delete id="deleteById" parameterType="string">
-		delete from td_teacherinformation　where TEACHERID=#{teacherId}
+		delete from td_teacherinformation　where TECHAER_ID=#{teacherId}
 	</delete>
 </mapper>

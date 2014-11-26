@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tdedu.bu.dao.SectionDao">
 	<resultMap type="com.tdedu.bu.domain.Section" id="sectionRM">
-		<id property="id" column="ID"/>
+		<id property="id" column="SECTION_ID"/>
 		<result property="sectionName" column="SECTION_NAME"/>
 		<result property="sectionVersion" column="SECTION_VERSION"/>
 		<result property="sectionCreateDate" column="SECTION_CREATE_DATE"/>
@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="teacherId" column="TEACHER_ID"/>
 	</resultMap>
 	<select id="get" resultMap="sectionRM">
-		select * from td_section where ID=#{id}
+		select * from td_section where SECTION_ID=#{id}
 	</select>
 		<select id="find" resultMap="sectionRM">
 		select * from td_section where SECTION_STATUS=#{sectionStatus}
@@ -22,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="insert" parameterType="com.tdedu.bu.domain.Section">
 		insert into td_section
-		(ID,SECTION_NAME,SECTION_VERSION,SECTION_CREATE_DATE,
+		(SECTION_ID,SECTION_NAME,SECTION_VERSION,SECTION_CREATE_DATE,
 			SECTION_UPDATE_DATE,SECTION_TYPE_ID,SECTION_STATUS,TEACHER_ID) values
 		( #{id},
 		  #{sectionName},	
@@ -45,9 +45,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="sectionStatus != null">SECTION_STATUS=#{sectionStatus},</if>
 			<if test="teacherId != null">TEACHER_ID=#{teacherId},</if>
 		</set>
-		where ID =#{id}
+		where SECTION_ID =#{id}
 	</update>
 	<delete id="deleteById" parameterType="string">
-	delete from td_section where ID=#{id}
+	delete from td_section where SECTION_ID=#{id}
 	</delete>
 </mapper>

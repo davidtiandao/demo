@@ -15,7 +15,7 @@ public class TestPassword {
 	@Test
 	public void testInsert() throws Exception{
 		Password password=new Password();
-		password.setUserId("127622ef-33b2-46df-b981-f57e4f92cd38");
+		password.setUserId("9aaba07e-9ad5-4414-9a7a-3e22ace47170");
 		password.setUserName("huangyong");
 		password.setPassword("abcd");
 		password.setStartDate(new Date());
@@ -25,7 +25,7 @@ public class TestPassword {
 	
 	@Test
 	public void testSeclect(){
-		passwordDao.get("43511cc7-95a6-4244-b2d1-57ee7563bf24");
+		passwordDao.get("9aaba07e-9ad5-4414-9a7a-3e22ace47170");
 		Password password=new Password();
 		password.setUserName("huangyong");
 		password.setPassword("abcd");
@@ -34,7 +34,7 @@ public class TestPassword {
 	@Test
 	public void testUpdate(){
 		Password password=new Password();
-		password.setUserId("43511cc7-95a6-4244-b2d1-57ee7563bf24");
+		password.setUserId("9aaba07e-9ad5-4414-9a7a-3e22ace47170");
 		password.setUserName("huangyongceshi");
 		password.setPassword("abcdde");
 		password.setStartDate(new Date());

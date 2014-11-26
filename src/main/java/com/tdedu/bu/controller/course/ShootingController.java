@@ -25,7 +25,9 @@ public class ShootingController {
 	private ShootingService shootingService; 
 	@Autowired
 	private ServletContext servletContext;
-	
+	/*
+	 * 添加直播
+	 */
 	@RequestMapping("/addShooting")
 	public String addShooting(@RequestParam("file") CommonsMultipartFile mFile,Shooting shooting){
 		if (!mFile.isEmpty()) {

@@ -17,7 +17,7 @@ public class TestManager {
 	@Test
 	public void TestInsert() throws Exception{
 		Manager manager=new Manager();
-		manager.setManagerId("8f7361e5-87f1-496a-8f05-7fd67f6d28c5");
+		manager.setManagerId("9aaba07e-9ad5-4414-9a7a-3e22ace47170");
 		manager.setManagerRole("课程管理员");
 		manager.setManagerStatus(2);
 		managerDao.insert(manager);
@@ -26,12 +26,12 @@ public class TestManager {
 	@Test
 	public void TestSelect(){
 		managerDao.find(null);
-		managerDao.get("43511cc7-95a6-4244-b2d1-57ee7563bf24");
+		managerDao.get("9aaba07e-9ad5-4414-9a7a-3e22ace47170");
 	}
 	@Test
 	public void TestUpdate() throws Exception{
 		Manager manager=new Manager();
-		manager.setManagerId("e13acfef-d0f0-44c0-97c5-943da4507ead");
+		manager.setManagerId("9aaba07e-9ad5-4414-9a7a-3e22ace47170");
 		manager.setManagerRole("教师-课程管理员");
 		manager.setManagerStatus(2);
 		managerDao.update(manager);

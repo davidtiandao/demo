@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tdedu.bu.dao.CategoryDao">
 	<resultMap type="com.tdedu.bu.domain.Category" id="categoryRM">
-		<id property="id" column="ID"/>
+		<id property="id" column="CATEGORY_ID"/>
 		<result property="categoryName" column="CATEGORY_NAME"/>
 		<result property="categoryIntroduction" column="CATEGORY_INTRODUCTION"/>
 		<result property="categoryHierarchy" column="CATEGORY_HIERARCHY"/>
@@ -13,13 +13,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="categoryStatus" column="CATEGORY_STATUS"/>
 			
 	</resultMap>
-	<!-- 查询父节点 -->
-	<select id="findCategoryParent" resultMap="categoryRM">
-		select * from td_category where CATEGORY_PARENT_ID ="0";
+	<!-- 按父节点查询 -->
+	<select id="findCategoryParent" resultMap="categoryRM" parameterType="string">
+		select * from td_category where CATEGORY_PARENT_ID =#{categoryParentId};
 	</select>
 	<!-- 按id查询 -->
 	<select id="get" resultMap="categoryRM" parameterType="string" >
-		select * from td_category where ID=#{id}
+		select * from td_category where CATEGORY_ID=#{id}
 	</select>
 	<!-- 查询子节点最大的hierarchy -->
 	<select id="findByHierarchy" resultType="Integer" parameterType="string">
@@ -38,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 插入 -->
 	<insert id="insert" parameterType="com.tdedu.bu.domain.Category">
 		insert into td_category
-		(ID,CATEGORY_NAME,CATEGORY_INTRODUCTION,CATEGORY_HIERARCHY,CATEGORY_ORDER_NO,CATEGORY_PARENT_ID,CATEGORY_STATUS) values
+		(CATEGORY_ID,CATEGORY_NAME,CATEGORY_INTRODUCTION,CATEGORY_HIERARCHY,CATEGORY_ORDER_NO,CATEGORY_PARENT_ID,CATEGORY_STATUS) values
 		( #{id},
 		  #{categoryName},	
 		  #{categoryIntroduction},
@@ -51,7 +51,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 更新状态 -->
 	<update id="updateStatus" parameterType="map">
 		update td_category set CATEGORY_STATUS=#{categoryStatus}
-		where ID in
+		where CATEGORY_ID in
 		<foreach collection="ids" item="id" open="(" close=")" separator=",">
 			#{id}
 		</foreach>
@@ -67,10 +67,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="categoryParentId != null">CATEGORY_PARENT_ID=#{categoryParentId},</if>
 			<if test="categoryStatus != 0">CATEGORY_STATUS=#{categoryStatus},</if>
 		</set>
-		where ID=#{id}
+		where CATEGORY_ID=#{id}
 	</update>
 	<!-- 删除 -->
 	<delete id="deleteById" parameterType="string">
-		delete from td_category where ID=#{id};
+		delete from td_category where CATEGORY_ID=#{id};
 	</delete>
 </mapper>

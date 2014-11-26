@@ -40,14 +40,13 @@ public class CategoryController{
 		return JSON.toJSONString(categoryService.listCategory(mapCategory));		
 	}
 	/*
-	 * 查询课程分类的一级分类 
+	 * 按父节点查询
 	 */
 	@RequestMapping("/findCategoryParent")
 	@ResponseBody
-	public String findCategoryParent(HttpServletResponse response) throws UnsupportedEncodingException{
-		List<Category> listCategory=categoryService.findCategoryParent();
-		System.out.println(JSONObject.toJSON(listCategory).toString());
-		return new String(JSONObject.toJSON(listCategory).toString().getBytes(),"ISO-8859-1");
+	public String findCategoryParent(String categoryParentId) {
+		List<Category> listCategory=categoryService.findCategoryParent(categoryParentId);
+		return JSONObject.toJSON(listCategory).toString();
 	}
 	/*
 	 * 增加课程分类

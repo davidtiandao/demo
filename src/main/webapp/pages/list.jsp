@@ -5,34 +5,59 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script src="${pageContext.request.contextPath}/js/jquery-1.11.1.js"></script>
-<title>Insert title here</title>
+<title>课程分类级联下拉列表</title>
 <script type="text/javascript">
 	$(document).ready(function () {	
 			alert("开始------");
 			$.ajax({
 				type : 'POST',
 				url : '${pageContext.request.contextPath}/category/findCategoryParent.action',
+				data: 'categoryParentId=' + "0" ,
+				dataType: "json",
 				success : function(msg)
 				{
 					// 清空表格
 					$("#categoryParentID").empty();				
-					// 转换成json对象
-					  var data = JSON.parse(msg);  
 					var option = "<option value=\"\">请选择...</option>";
 					// 循环组装下拉框选项
-					$.each(data, function(k, v)
+					$.each(msg, function(k, v)
 					{
 						option +="<option value=\"" + v['id'] + "\">" + v['categoryName'] + "</option>";  
 					});
 					$("#categoryParentID").append(option);
-				},
-				error : function(msg, textStatus, e)
-				{
- 					alert("获取失败");
-// 					window.location = path + "/login.jsp";
+					$("#categoryParentID").change(function()  
+				            {  
+								alert($(this).val());
+				               show_childrenInfo($(this).val());  
+				            });  
 				}
 			});
 	});
+	
+	function show_childrenInfo(categoryParentId)
+	{
+		$.ajax(
+		{
+			type : 'POST',
+			url : '${pageContext.request.contextPath}/category/findCategoryParent.action',
+			data : 'categoryParentId=' + categoryParentId ,
+			dataType: "json",
+			success : function(msg)
+			{
+				// 清空表格
+				$("#categoryID").empty();
+				var option = "<option value=\"\">请选择...</option>";
+				// 循环组装下拉框选项
+				$.each(msg, function(k, v)
+				{
+					option += "<option value=\"" + v['id'] + "\">" + v['categoryName'] + "</option>";
+				});
+				
+				$("#categoryID").append(option);
+				
+			}
+		});
+	}	
 </script>
 
 </head>

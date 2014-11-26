@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tdedu.bu.dao.CourseDao">
 	<resultMap type="com.tdedu.bu.domain.Course" id="courseRM">
-		<id property="id" column="ID"/>
+		<id property="id" column="COURSE_ID"/>
 		<result property="courseTitle" column="COURSE_TITLE"/>
 		<result property="courseNo" column="COURSE_NO"/>
 		<result property="courseVersion" column="COURSE_VERSION"/>
@@ -15,11 +15,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="courseUpdateDate" column="COURSE_UPDATE_DATE"/>
 		<result property="seeNumber" column="SEE_NUMBER"/>
 		<result property="courseStatus" column="COURSE_STATUS"/>
-		<result property="categoryNo" column="CATEGORY_NO"/>
+		<result property="categoryNo" column="CATEGORY_ID"/>
 	</resultMap>
 	<!-- 按id查询 -->
 	<select id="get" resultMap="courseRM" parameterType="string">
-		select * from td_course where ID={#id}
+		select * from td_course where COURSE_ID={#id}
 	</select>
 	<!-- 按状态查询 -->
 	<select id="find" resultMap="courseRM" parameterType="int">
@@ -30,8 +30,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 插入 -->
 	<insert id="insert" parameterType="com.tdedu.bu.domain.Course">
 		insert into td_course
-		(ID,COURSE_TITLE,COURSE_NO,COURSE_VERSION,COURSE_CREATE_DATE,COURSE_CONTENT,COURSE_RESOURCE,
-			COURSE_INTRODUCTION,COURSE_UPDATE_DATE,SEE_NUMBER,COURSE_STATUS,CATEGORY_NO) values
+		(COURSE_ID,COURSE_TITLE,COURSE_NO,COURSE_VERSION,COURSE_CREATE_DATE,COURSE_CONTENT,COURSE_RESOURCE,
+			COURSE_INTRODUCTION,COURSE_UPDATE_DATE,SEE_NUMBER,COURSE_STATUS,CATEGORY_ID) values
 		( #{id},
 		  #{courseTitle},	
 		  #{courseNo},
@@ -60,12 +60,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="courseUpdateDate != null">COURSE_UPDATE_DATE=#{courseUpdateDate},</if>
 			<if test="seeNumber != null">SEE_NUMBER=#{seeNumber},</if>
 			<if test="courseStatus != null">COURSE_STATUS=#{courseStatus},</if>
-			<if test="categoryNo != null">CATEGORY_NO=#{categoryNo},</if>
+			<if test="categoryNo != null">CATEGORY_ID=#{categoryNo},</if>
 		</set>
-		where ID =#{id}
+		where COURSE_ID =#{id}
 	</update>
 	<!-- 删除 -->
 	<delete id="deleteById" parameterType="string">
-		delete from td_course where ID=#{id};
+		delete from td_course where COURSE_ID=#{id};
 	</delete>
 </mapper>

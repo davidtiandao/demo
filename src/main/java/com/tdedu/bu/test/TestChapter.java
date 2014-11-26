@@ -21,7 +21,7 @@ public class TestChapter {
 		chapter.setHierarchy(2);
 		chapter.setChapterCreateDate(new Date());
 		chapter.setChapterUpdateDate(new Date());
-		chapter.setCourseId("3f0fed46-1c79-4580-abe4-47e07f7fa28c");
+		chapter.setCourseId("2d9bcb24-c146-43c4-9a04-0a1c31e8ccf2");
 		chapter.setChapterStatus(2);
 		chapter.setChapterNo("wgvelknlnw");
 		chapter.setChapterVersion("flkenlfnwe");
@@ -29,17 +29,17 @@ public class TestChapter {
 	}
 	@Test
 	public void select(){
-		chapterDao.get("3f0fed46-1c79-4580-abe4-47e07f7fa28c");
+		chapterDao.get("ab29b0c8-3cfd-40a2-8920-8bce426d777f");
 	}
 	@Test
 	public void update() throws Exception{
 		Chapter chapter=new Chapter();
 		chapter.setChapterTitle("雅思口语_口语俄外交部副");
-		chapter.setId("0728101b-a2e8-49c9-b1a0-20ca35b115e5");
+		chapter.setId("ab29b0c8-3cfd-40a2-8920-8bce426d777f");
 		chapter.setHierarchy(2);
 		chapter.setChapterCreateDate(new Date());
 		chapter.setChapterUpdateDate(new Date());
-		chapter.setCourseId("3f0fed46-1c79-4580-abe4-47e07f7fa28c");
+		chapter.setCourseId("2d9bcb24-c146-43c4-9a04-0a1c31e8ccf2");
 		chapter.setChapterStatus(2);
 		chapter.setChapterNo("wgvelknlnw");
 		chapter.setChapterVersion("flkenlfnwe");
@@ -47,6 +47,6 @@ public class TestChapter {
 	}
 	@Test
 	public void delete() throws Exception{
-		chapterDao.deleteById("4b9e42e4-6b27-4086-a3ed-0e5e4b7c72ff");
+		chapterDao.deleteById("ab29b0c8-3cfd-40a2-8920-8bce426d777f");
 	}
 }

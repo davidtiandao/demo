@@ -23,9 +23,9 @@ public class CategoryService {
 		return categoryDao.findByHierarchy(uid);
 	}
 	
-	public List<Category> findCategoryParent(){
+	public List<Category> findCategoryParent(String categoryParentId){
 		
-		return categoryDao.findCategoryParent();
+		return categoryDao.findCategoryParent(categoryParentId);
 	}
 
 	public void saveCategory(Category category) throws Exception {

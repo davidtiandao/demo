@@ -23,7 +23,7 @@ public class TestSection {
 		section.setSectionName("ewjhfjkewbgh");
 		section.setSectionStatus(2);
 		section.setSectionUpdateDate(new Date());
-		section.setTeacherId("127622ef-33b2-46df-b981-f57e4f92cd38");
+		section.setTeacherId("9aaba07e-9ad5-4414-9a7a-3e22ace47170");
 		section.setSectionTypeId("rehgrehre");
 		section.setSectionVersion("001001");
 		sectionDao.insert(section);
@@ -31,7 +31,7 @@ public class TestSection {
 	@Test
 	public void testSeclect(){
 		List<Section> sections=sectionDao.find(null);
-		Section section=sectionDao.get("0ebd4887-24cc-48e9-a82f-42eb719335e0");
+		Section section=sectionDao.get("6560bb8f-a6c2-436c-a468-ac89170a1ae2");
 		System.out.println(sections.get(0).getSectionName()); 
 		System.out.println(section.getSectionName());
 	}
