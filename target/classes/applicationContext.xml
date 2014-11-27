@@ -118,6 +118,10 @@
         <property name="mapperInterface" value="com.tdedu.bu.dao.VideoTypeDao"></property>
         <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
     </bean>
+	  <bean id="courseSuggestDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.tdedu.bu.dao.CourseSuggestDao"></property>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+    </bean>
     
   <bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">  
         <property name="config">  

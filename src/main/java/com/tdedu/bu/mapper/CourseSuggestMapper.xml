@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tdedu.bu.dao.CourseSuggestDao">
+	<resultMap type="com.tdedu.bu.domain.CourseSuggest" id="suggestRM">
+		<id property="courseSuggestId" column="COURSE_SUGGEST_ID"/>
+		<result property="userId" column="USER_ID"/>
+		<result property="userName" column="USERNAME"/>
+		<result property="courseSuggest" column="COURSE_SUGGEST"/>
+		<result property="createDate" column="CREATE_DATE"/>
+	</resultMap>
+	<insert id="insert" parameterType="com.tdedu.bu.domain.CourseSuggest">
+		insert into td_course_suggest
+		(COURSE_SUGGEST_ID,USER_ID,USERNAME,COURSE_SUGGEST,CREATE_DATE) values
+		( #{courseSuggestId},
+		  #{userId},	
+		  #{userName},
+		  #{courseSuggest},
+		  #{createDate}
+		)
+	</insert>
+	
+	<delete id="delete" >
+		delete from td_course_suggest
+		where COURSE_SUGGEST_ID in
+		<foreach collection="array" item="courseSuggestId" open="(" close=")" separator=",">
+			#{courseSuggestId}
+		</foreach>
+	</delete>
+	<!-- 查询 -->
+	<select id="find" resultMap="suggestRM" >
+		select * from td_course_suggest order by CREATE_DATE;
+	</select>
+	
+</mapper>

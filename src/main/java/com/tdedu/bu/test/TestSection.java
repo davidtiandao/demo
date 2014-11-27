@@ -20,7 +20,7 @@ public class TestSection {
 		Section section=new Section();
 		section.setId(UUID.randomUUID().toString());
 		section.setSectionCreateDate(new Date());
-		section.setSectionName("ewjhfjkewbgh");
+		section.setSectionName("阅读理解初解析上半部分视频1");
 		section.setSectionStatus(2);
 		section.setSectionUpdateDate(new Date());
 		section.setTeacherId("9aaba07e-9ad5-4414-9a7a-3e22ace47170");
