@@ -53,6 +53,12 @@ public class CourseController {
 		
 		return new String (JSONObject.toJSON(courses).toString().getBytes(),"ISO-8859-1");
 	}
-	
-
+	@RequestMapping("/specifiedCourse")
+	public String specifiedCourse(){
+		
+		
+		
+		return null;
+		
+	}
 }

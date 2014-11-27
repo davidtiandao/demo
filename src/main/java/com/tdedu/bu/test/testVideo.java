@@ -17,11 +17,11 @@ public class testVideo {
 	public void testInsert() throws Exception{
 		Video video=new Video();
 		video.setId(UUID.randomUUID().toString());
-		video.setSectionId("25b1f374-2ff0-42b9-ade9-1ffb50a0ad30");
-		video.setVideoFileTypeId("esgwrnekjgnkj");
+		video.setSectionId("42b9b770-6a81-4d2f-b232-4242628b8637");
+		video.setVideoFileTypeId("sdfhsde");
 		video.setVideoLx("gregr");
 		video.setVideoName("wegjhewjkh");
-		video.setVideoTypeId("ewgn lwken");
+		video.setVideoTypeId("sdfgjd");
 		videoDao.insert(video);
 	}
 	@Test

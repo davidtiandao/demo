@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 插入 -->
 	<insert id="insert" parameterType="com.tdedu.bu.domain.Video">
 		insert into td_video
-		(VIDEO_ID,SECTION_ID,VIDEO_NAME,VIDEO_LX,VIDEO_TYPEID,VIDEO_FILE_ID) values
+		(VIDEO_ID,SECTION_ID,VIDEO_NAME,VIDEO_LX,VIDEO_TYPE_ID,VIDEO_FILE_TYPE_ID) values
 		( #{id},
 		  #{sectionId},	
 		  #{videoName},

@@ -10,6 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.tdedu.bu.dao.CourseDao;
 import com.tdedu.bu.domain.Course;
+import com.tdedu.bu.vo.CourseVo;
 
 public class TestCourse {
 	ApplicationContext applicationContext=new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -48,4 +49,12 @@ public class TestCourse {
 	public void testDelete() throws Exception{
 		courseDao.deleteById("4253e1a6-a9d4-43b1-a5b1-aab25b205c5b");
 	}
+	
+	@Test
+	public void testspecify() throws Exception{
+		
+		CourseVo v= courseDao.getCourseInfo("f2adb4d7-eeef-4a57-b70a-ee52585d861c");
+		System.out.println("sdf");
+	}
+	
 }

@@ -25,11 +25,48 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<result property="commentsNum" column="COMMENTS_NUM"/>
 	<result property="attentionsNum" column="ATTENTIONS	_NUM"/>
 	<collection property="chapters" ofType="com.tdedu.bu.vo.ChapterVo">
+	<id property="id" column="CHAPTER_ID"/>
+		<result property="chapterTitle" column="CHAPTER_TITLE"/>
+		<result property="chapterVersion" column="CHAPTER_VERSION"/>
+		<result property="chapterNo" column="CHAPTER_NO"/>
+		<result property="chapterCreateDate" column="CHAPTER_CREATE_DATE"/>
+		<result property="chapterUpdateDate" column="CHAPTER_UPDATE_DATE"/>
+		<result property="chapterIntroduction" column="CHAPTER_INTRODUCTION"/>
+		<result property="chapterContent" column="CHAPTER_CONTENT"/>
+		<result property="chapterResource" column="CHAPTER_RESOURCE"/>
+		<result property="courseId" column="COURSE_ID"/>
+		<result property="hierarchy" column="HIERARCHY"/>
+		<result property="chapterParentId" column="CHAPTER_PARENT_ID"/>
+		<result property="chapterStatus" column="CHAPTER_STATUS"/>
 	<collection property="sections" ofType="com.tdedu.bu.vo.SectionVo">
+		<id property="id" column="SECTION_ID"/>
+		<result property="sectionName" column="SECTION_NAME"/>
+		<result property="sectionVersion" column="SECTION_VERSION"/>
+		<result property="sectionCreateDate" column="SECTION_CREATE_DATE"/>
+		<result property="sectionUpdateDate" column="SECTION_UPDATE_DATE"/>
+		<result property="sectionTypeId" column="SECTION_TYPE_ID"/>
+		<result property="sectionStatus" column="SECTION_STATUS"/>
+		<result property="teacherId" column="TEACHER_ID"/>
 	<collection property="videos" ofType="com.tdedu.bu.domain.Video">
+			<id property="id" column="VIDEO_ID"/>
+		<result property="sectionId" column="SECTION_ID"/>
+		<result property="videoName" column="VIDEO_NAME"/>
+		<result property="videoLx" column="VIDEO_LX"/>
+		<result property="videoTypeId" column="VIDEO_TYPEID"/>
+		<result property="videoFileTypeId" column="VIDEO_FILE_ID"/>
 	</collection>
 	</collection>
 	</collection>
+	<collection property="usercomments" ofType="com.tdedu.bu.domain.UserComment">
+		<id property="id" column="USER_COMMENT_ID"/>
+		<result property="userId" column="USERID"/>
+		<result property="username" column="USERNAME"/>
+		<result property="sectionId" column="SECTION_ID"/>
+		<result property="comment" column="COMMENT"/>
+		<result property="commentDate" column="COMMENT_DATE"/>
+		<result property="parentId" column="PARENT_ID"/>
+	</collection> 
+	
 	</resultMap>
 	
 	
@@ -39,14 +76,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from td_course where COURSE_ID={#id}
 	</select>
 	<!-- 按状态查询 -->
-	<select id="find" resultMap="courseVoRM" >
-		select * from td_course 
-		
-		select * from 
-		(SELECT * FROM td_video tv LEFT OUTER JOIN td_section ts ON tv.SECTION_ID=ts.ID)
-		
-		where ID=#{courseId}
-		   and COURSE_STATUS=#{courseStatus}
+	<select id="getCourseInfo" resultMap="courseVoRM" >
+	SELECT *
+		FROM td_usercomment uc RIGHT JOIN 
+		(SELECT *
+		FROM td_course tco LEFT OUTER JOIN 
+		(SELECT *
+		FROM td_chapter tc LEFT OUTER JOIN 
+		(SELECT * FROM td_video tv LEFT OUTER JOIN td_section ts USING (SECTION_ID)) sv
+		USING (CHAPTER_ID)) csv
+		USING (COURSE_ID) WHERE COURSE_ID=#{courseId}
+		) c ON uc.PARENT_ID=c.COURSE_ID
+		WHERE COURSE_ID=#{courseId} ORDER BY uc.COMMENT_DATE DESC
 	</select>
 	
 	

@@ -11,9 +11,16 @@ public class UserComment {
 	private String commentDate;
 	private int commentStatus;
 	private String parentId;
+	private String username;
 	
 	
 	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	public UserComment() {
 		super();
 		// TODO Auto-generated constructor stub

@@ -9,9 +9,15 @@ public class UserStudy {
 	private String sectionId;
 	private long sectionTime;
 	private String courseId;
+	private int studyStatus;
 	
 	
-	
+	public int getStudyStatus() {
+		return studyStatus;
+	}
+	public void setStudyStatus(int studyStatus) {
+		this.studyStatus = studyStatus;
+	}
 	public UserStudy() {
 		super();
 		// TODO Auto-generated constructor stub

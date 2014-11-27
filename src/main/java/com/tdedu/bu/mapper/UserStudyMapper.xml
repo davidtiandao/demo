@@ -9,6 +9,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="sectionId" column="SECTION_ID"/>
 		<result property="sectionTime" column="SECTION_TIME"/>
 		<result property="courseId" column="COURSE_ID"/>
+		<result property="studyStatus" column="STUDY_STATUS"/>
+		
 	</resultMap>
 	<!-- 按id查询 -->
 	<select id="get" resultMap="studyRM">
@@ -17,12 +19,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 插入 -->
 	<insert id="insert" parameterType="com.tdedu.bu.domain.UserStudy">
 		insert into td_userstudy
-		(USER_STUDY_ID,USERID,SECTION_ID,SECTION_TIME,COURSE_ID) values
+		(USER_STUDY_ID,USERID,SECTION_ID,SECTION_TIME,COURSE_ID,STUDY_STATUS) values
 		( #{id},
 		  #{userId},	
 		  #{sectionId},
 		  #{sectionTime},
 		  #{courseId}
+		  #{studyStatus}
 		)
 	</insert>
 	<!-- 更新 -->
@@ -40,4 +43,49 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteById" parameterType="string">
 		delete from td_userstudy　WHERE USER_STUDY_ID=#{id}
 	</delete>
+	
+	<resultMap type="com.tdedu.bu.vo.UserCourseVo" id="UserCourseVo">	
+		<id property="id" column="USER_ID"/>
+		<!-- 一般属性 -->
+		<result property="fullName" column="FULL_NAME"/>
+		<result property="sectionNUm" column="SECTION_NUM"/>
+		<result property="finishedNum" column="FINISHED_NUM"/>
+		
+		
+		<collection property="courses" ofType="com.tdedu.bu.domain.Course">
+			<id property="id" column="COURSE_ID"/>
+			<result property="courseTitle" column="COURSE_TITLE"/>
+			<result property="courseNo" column="COURSE_NO"/>
+			<result property="courseVersion" column="COURSE_VERSION"/>
+			<result property="courseCreateDate" column="COURSE_CREATE_DATE"/>
+			<result property="courseContent" column="COURSE_CONTENT"/>
+			<result property="courseResource" column="COURSE_RESOURCE"/>
+			<result property="courseIntroduction" column="COURSE_INTRODUCTION"/>
+			<result property="courseUpdateDate" column="COURSE_UPDATE_DATE"/>
+			<result property="seeNumber" column="SEE_NUMBER"/>
+			<result property="courseStatus" column="COURSE_STATUS"/>
+			<result property="categoryNo" column="CATEGORY_ID"/>
+		</collection>
+
+
+
+	</resultMap>
+	
+	
+	
+	<select id="getuserCourse" resultMap="UserCourseVo">
+
+	
+	SELECT *
+ 	FROM td_userinformation tu   LEFT OUTER JOIN  (SELECT COUNT(SECTION_ID)
+ 	 AS section_Num,COURSE_ID ,USER_ID FROM  td_userstudy GROUP BY COURSE_ID)  tus USING(user_id)
+	LEFT OUTER JOIN (SELECT COUNT(SECTION_ID) AS finished_num,user_id FROM 
+	 td_userstudy WHERE STUDY_STATUS=0 GROUP BY COURSE_ID)  tfs USING(user_id)		
+	LEFT OUTER JOIN td_course USING(Course_id) WHERE tu.user_id=#{uid}
+	
+	</select>
+	
+
+	
+	
 </mapper>
