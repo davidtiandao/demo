@@ -3,8 +3,7 @@ package com.tdedu.bu.vo;
 import java.util.Date;
 import java.util.List;
 
-import com.tdedu.bu.domain.Chapter;
-import com.tdedu.bu.domain.Course;
+import com.tdedu.bu.domain.Category;
 import com.tdedu.bu.domain.UserComment;
 
 public class CourseVo {
@@ -14,8 +13,15 @@ private List<UserComment> usercomments;
 private int sectionNum; 
 private int commentsNum;
 private int attentionsNum;
+private String categories;
 
 
+public String getCategories() {
+	return categories;
+}
+public void setCategories(String categories) {
+	this.categories = categories;
+}
 public List<UserComment> getUsercomments() {
 	return usercomments;
 }

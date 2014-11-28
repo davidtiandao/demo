@@ -9,12 +9,15 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.tdedu.bu.dao.CourseDao;
+import com.tdedu.bu.dao.UserStudyDao;
 import com.tdedu.bu.domain.Course;
 import com.tdedu.bu.vo.CourseVo;
+import com.tdedu.bu.vo.UserCourseVo;
 
 public class TestCourse {
 	ApplicationContext applicationContext=new ClassPathXmlApplicationContext("applicationContext.xml");
 	CourseDao courseDao=(CourseDao) applicationContext.getBean("courseDao");	
+	UserStudyDao userStudyDao=(UserStudyDao) applicationContext.getBean("userStudyDao");	
 
 	@Test
 	public void testInsert() throws Exception{
@@ -53,7 +56,13 @@ public class TestCourse {
 	@Test
 	public void testspecify() throws Exception{
 		
-		CourseVo v= courseDao.getCourseInfo("f2adb4d7-eeef-4a57-b70a-ee52585d861c");
+		CourseVo v= courseDao.getCourseInfo("2d9bcb24-c146-43c4-9a04-0a1c31e8ccf2");
+		System.out.println("sdf");
+	}
+	@Test
+	public void testUserCourse() throws Exception{
+		
+		List<UserCourseVo> userCourseVos= userStudyDao.getuserCourse("9aaba07e-9ad5-4414-9a7a-3e22ace47170");
 		System.out.println("sdf");
 	}
 	

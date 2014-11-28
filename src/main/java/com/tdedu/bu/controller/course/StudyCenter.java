@@ -1,5 +1,7 @@
 package com.tdedu.bu.controller.course;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -45,7 +47,7 @@ public class StudyCenter {
 	@RequestMapping("/getuserCourse")
 	@ResponseBody
 	public String getuserCourse(String uid){
-		UserCourseVo userCourse=courseStudyService.getUserCourse(uid);
+		List<UserCourseVo> userCourse=courseStudyService.getUserCourse(uid);
 		return JSONObject.toJSON(userCourse).toString();
 	}
 	

@@ -18,7 +18,7 @@ public class CourseStudyService {
 private UserStudyDao userStudyDao; 
 @Autowired
 private CourseDao courseDao;
-public UserCourseVo getUserCourse(String uid){
+public List<UserCourseVo> getUserCourse(String uid){
 	return userStudyDao.getuserCourse(uid);
 }
 public void selectCourse(String courseId,String userId) throws Exception{

@@ -2,6 +2,7 @@ package com.tdedu.bu.vo;
 
 import java.util.List;
 
+import com.tdedu.bu.domain.Category;
 import com.tdedu.bu.domain.Course;
 
 public class UserCourseVo {
@@ -11,6 +12,15 @@ public class UserCourseVo {
 	private String fullName;
 	private int sectionNUm;
 	private int finishedNum;
+	private String categories;
+	
+
+	public String getCategories() {
+		return categories;
+	}
+	public void setCategories(String categories) {
+		this.categories = categories;
+	}
 	public List<Course> getCourses() {
 		return courses;
 	}

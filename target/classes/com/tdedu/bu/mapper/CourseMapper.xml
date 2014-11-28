@@ -24,6 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<result property="sectionNum" column="SECTION_NUM"/>
 	<result property="commentsNum" column="COMMENTS_NUM"/>
 	<result property="attentionsNum" column="ATTENTIONS	_NUM"/>
+	<result property="categories" column="categories"/>
 	<collection property="chapters" ofType="com.tdedu.bu.vo.ChapterVo">
 	<id property="id" column="CHAPTER_ID"/>
 		<result property="chapterTitle" column="CHAPTER_TITLE"/>
@@ -67,6 +68,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="parentId" column="PARENT_ID"/>
 	</collection> 
 	
+	
+	
+	
 	</resultMap>
 	
 	
@@ -77,7 +81,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 按状态查询 -->
 	<select id="getCourseInfo" resultMap="courseVoRM" >
-	SELECT *
+	
+	SELECT * FROM
+(
+SELECT USER_COMMENT_ID,user_id,USERNAME,COMMENT,COMMENT_DATE,c.*
 		FROM td_usercomment uc RIGHT JOIN 
 		(SELECT *
 		FROM td_course tco LEFT OUTER JOIN 
@@ -86,8 +93,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(SELECT * FROM td_video tv LEFT OUTER JOIN td_section ts USING (SECTION_ID)) sv
 		USING (CHAPTER_ID)) csv
 		USING (COURSE_ID) WHERE COURSE_ID=#{courseId}
-		) c ON uc.PARENT_ID=c.COURSE_ID
-		WHERE COURSE_ID=#{courseId} ORDER BY uc.COMMENT_DATE DESC
+		) c ON uc.PARENT_ID=c.COURSE_ID WHERE COURSE_ID=#{courseId}
+	) cc
+	right OUTER JOIN 	
+(
+		SELECT COURSE_id,GROUP_CONCAT(CATEGORY_NAME) as categories FROM
+	(
+	SELECT COURSE_id, CATEGORY_NAME  FROM td_course   JOIN td_course_category USING (COURSE_ID)
+	 JOIN td_category USING (CATEGORY_ID) ) gs GROUP BY COURSE_id
+		) agc
+USING (COURSE_id) WHERE COURSE_ID=#{courseId}
+ORDER BY cc.COMMENT_DATE DESC
+	
 	</select>
 	
 	
