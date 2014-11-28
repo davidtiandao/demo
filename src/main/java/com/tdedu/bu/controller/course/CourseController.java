@@ -3,12 +3,14 @@ package com.tdedu.bu.controller.course;
 
 
 import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -18,6 +20,7 @@ import com.tdedu.bu.service.CourseService;
 import com.tdedu.bu.web.Page;
 import com.tdedu.bu.web.PageUtil;
 
+@Controller
 @RequestMapping("/Course")
 public class CourseController {
 	@Autowired
@@ -53,6 +56,7 @@ public class CourseController {
 		
 		return new String (JSONObject.toJSON(courses).toString().getBytes(),"ISO-8859-1");
 	}
+
 	@RequestMapping("/specifiedCourse")
 	public String specifiedCourse(){
 		
@@ -61,4 +65,5 @@ public class CourseController {
 		return null;
 		
 	}
+
 }

@@ -52,7 +52,6 @@ private UserInformationService userInformationService;
 	
 	}
 
-
 	/*
 	 * 登录
 	 */
